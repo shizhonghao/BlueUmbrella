@@ -16,8 +16,13 @@ Build a VPN sharing system, which is capable of:
 
 ## software design
 
-### enviorment
+### environment
 
 ### database design
+relational schema:
+user(id,pwd)
+account(id,expire_date)
+stat(id,dataflow,connection_time)
+with primary key id(username)
 
 ### ...
