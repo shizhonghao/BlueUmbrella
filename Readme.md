@@ -1,31 +1,29 @@
-# Readme
+#Readme
 
-A simple blog-aware framework
+A platform to help our friends to escape some walls.
 
-## What
+## Functions
 
-It should be like a static site generator, supporting rendering markdown files by templates to a post, but can also do online-editing and draft saving.
+The platform we are building in should be capable of:
 
-## Structure
+1. Letting a user sign in/up.
 
-* Back end
+2. Allowing a user to check his/her current account status(dataflow, connection time, available time etc). 
 
-    * Providing RESTful APIs, file-system, and auth.
+3. Allowing a user to pay for his/her account(10￥/month)
 
-* Front end
+4. Providing VPN services for those users who still has available time in their account.
 
-    * Basic interface and layouts. <- Posts, comments, online-editing, archives and categories, and a control panel (maybe). 
+5. Allowing administrator to check the users status, may have to set user's available time manually.
 
-    * Rendering, templates, plugins and themes.
+## database design
 
-## Implementations
+relational schema:
 
-### Environment
+user(id,pwd)
 
-### Schedule
+account(id,expire_date)
 
-1. Render a given template (should be pretty simple) to a webpage.
+stat(id,dataflow,connection_time)
 
-2. Have a spec of templates, and let user define some customized tags.
-
-3. 
+with primary key id(username)
