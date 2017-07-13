@@ -1,21 +1,28 @@
 ## Have Done 
 
-### Jun 10
+### Jul 10
 
 * Setup basic env: zsh (oh-my-zsh for users), git, tmux, python
 * User management in VPS and pubkeys for logging into SSH
 
-### Jun 11
+### Jul 11
 
-* Install LEMP Stack ([link](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-in-ubuntu-16-04))
+* Installed LEMP Stack ([link](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-in-ubuntu-16-04))
 
-* Install ShadowsocksR ([link](https://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup(manyuser-with-mysql)))  **Succeed with mudbjson**
+* Installed ShadowsocksR ([link](https://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup(manyuser-with-mysql)))  **Succeed with mudbjson**
 
-### Jun 12
+### Jul 12
 
-* Install eve([link](http://python-eve.org/quickstart.html#database-interlude)) and Mongodb([link](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)) 
+* Installed eve([link](http://python-eve.org/quickstart.html#database-interlude)) and Mongodb([link](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)) 
+    * Note: May use Flask instead.
 
 * Tested availability under /home/frank/test
+
+### Jul 13
+
+* Installed Hexo, running a simple static blog as our main page.
+
+* Configurated the logs of Nginx.
 
 ## Gonna Do
 
@@ -29,10 +36,16 @@
 
 * Build front-end & back-end base on vue(js) & eve(python) 
 
-### Added Jun 11 late nignt
+### Added Jul 11 late nignt
 
 * Develope interfaces for ShadowsocksR many users, and maybe a front-end for later work.
 
     * Note: as the version of many users we have used so far is based on mudbjson, the coordination with a **real** database may be concerned as a hidden problem.
 
 * Start to operate the service
+
+### Added Jul 13
+
+* Get a 404 and 50x page (Path: /usr/share/nginx/html)
+
+* Get a favicon
