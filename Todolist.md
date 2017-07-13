@@ -11,6 +11,11 @@
 
 * Install ShadowsocksR ([link](https://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup(manyuser-with-mysql)))  **Succeed with mudbjson**
 
+### Jun 12
+
+* Install eve([link](http://python-eve.org/quickstart.html#database-interlude)) and Mongodb([link](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)) 
+
+* Tested availability under /home/frank/test
 
 ## Gonna Do
 
@@ -21,6 +26,8 @@
     * Note: we are not going to completely follow this one, since there's a better way to do tcp congestion control (bbr) which has already been installed.
 
 * For configuration of multiple sites (Virtual host) ([link](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04))
+
+* Build front-end & back-end base on vue(js) & eve(python) 
 
 ### Added Jun 11 late nignt
 
