@@ -10,11 +10,11 @@
 
 2. 下载后打开应用，点击选择线路
 
-！[image](https://github.com/shizhonghao/BlueUmbrella/blob/master/IOS%20setup/IOS2.PNG)
+[image](https://github.com/shizhonghao/BlueUmbrella/blob/master/IOS%20setup/IOS2.PNG)
 
 3. 点击新增线路
 
-！[image](https://github.com/shizhonghao/BlueUmbrella/blob/master/IOS%20setup/IOS3.PNG)
+[](https://github.com/shizhonghao/BlueUmbrella/blob/master/IOS%20setup/IOS3.PNG)
 
 4. 线路类型选择Shadowsocks(R)
 
