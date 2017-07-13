@@ -1,0 +1,1 @@
+* Mongodb /usr/bin/mongo
