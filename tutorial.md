@@ -6,7 +6,7 @@
 
 1. 在App Store 中搜索并下载wingy 
 
-！[image](https://github.com/shizhonghao/BlueUmbrella/blob/master/IOS%20setup/IOS1.PNG)
+(https://github.com/shizhonghao/BlueUmbrella/blob/master/IOS%20setup/IOS1.PNG)
 
 2. 下载后打开应用，点击选择线路
 
