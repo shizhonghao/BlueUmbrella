@@ -24,6 +24,10 @@
 
 * Configurated the logs of Nginx.
 
+* Dealing with multiusers in Hexo, I decided to symlink the `blogs` in our git depository to `source` in the root dictionary of hexo, since for the other direction, Git deals the symlink just as a irregular file instead of a link, but hexo works well.
+
+* By the way, I'm gonna modify the `hexo-deployer-rsync` to automatically commit and push the folder `blogs` to Github.
+
 ## Gonna Do
 
 * Install ss-panel ([link](https://sspanel.xyz/docs/install/manual)) **Not working properly due to configuration of PHP** **May be dropped**
