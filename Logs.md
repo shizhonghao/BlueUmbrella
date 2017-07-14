@@ -37,7 +37,6 @@
 >>>> id
 >>>> pwd
 >>>> e_mail
->>> *
 >>> account
 >>>> id
 >>>> expire_date
