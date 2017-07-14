@@ -37,11 +37,10 @@
 >>>> id
 >>>> pwd
 >>>> e_mail
-
+>>> *
 >>> account
 >>>> id
 >>>> expire_date
-
 >> admin
 >> local
 >> user(for testing, will be deleted later)
