@@ -20,10 +20,10 @@ The platform we are building in should be capable of:
 
 relational schema:
 
-user(id,pwd)
+user(id,pwd,e_mail)
 
 account(id,expire_date)
 
-stat(id,dataflow,connection_time)
-
 with primary key id(username)
+
+while the original stat(id,dataflow,connection_time) is now saved and maintained in ssr itself.
