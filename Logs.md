@@ -26,3 +26,22 @@
 * Configurated the logs of Nginx.
 
 * Deploy Hexo in server, modified `hexo-deployer-rsync` for using it at `localhost`.
+
+### Jul 14
+
+* Build database on mongodb, which has the following structure:
+
+> mongodb
+>> TBU
+>>> user
+>>>> id
+>>>> pwd
+>>>> e_mail
+>>> account
+>>>> id
+>>>> expire_date
+>> admin
+>> local
+>> user(for testing, will be deleted later)
+
+* Build database_opt.py under /home/frank/test for any database command
