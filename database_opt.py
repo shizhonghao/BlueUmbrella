@@ -1,6 +1,5 @@
 from pymongo import MongoClient
 import datetime
-from calendar import monthrange
 
 class TBU_db:
 	
@@ -40,43 +39,37 @@ class TBU_db:
 		line = {"id":uid,"pwd":pwd,"e_mail":e_mail}
 		collection.insert(line)
 		collection = self.db.account
-		line = {"id":uid,"expire_date":self.init_date.isoformat()}
+		line = {"id":uid,"expire_date":self.init_date}
 		collection.insert(line)
 	
 	
 	#operations for altering the TBU datebase
-	def reset_pwd(self,uid,new_pwd):
+	def reset_pwd(uid,new_pwd):
 		collection = self.db.user
 		res = collection.find({"id":uid})
 		for line in res:
 			line["pwd"] = new_pwd
 			collection.save(line)
 
-	def reset_email(self,uid,new_email):
+	def reset_email(pid,new_email):
 		collection = self.db.user
 		res = collection.find({"id":uid})
 		for line in res:
 			line["e_mail"] = new_email
 			collection.save(line)
 	
-	def add_expire(self,uid,time_added):
+	def add_expire(pid,time_added):
 		collection = self.db.account
 		res = collection.find({"id":uid})
 		for line in res:
-			t = line["expire_date"].encode("utf-8")
-			print(type(t))
-			t = t.split("-")
+			t = line["expire_time"]
 			print(t)
-			expire = datetime.date(int(t[0]),int(t[1]),int(t[2]))
-			for i in range(0,time_added):
-				expire = expire + datetime.timedelta(days=monthrange(expire.year,expire.month)[1])
-			line["expire_date"] = expire.isoformat()
-			collection.save(line)
+			#line["expire_time"] = t
+			#collection.save(line)
 
 
 if __name__ == '__main__':
 	db = TBU_db()
-	#db.new_user("frank","password","894341935@qq.com")
 	print(db.get_email("frank"))
 	print(db.get_expire_date("frank"))
 	print(db.login_check("frank","password"))
