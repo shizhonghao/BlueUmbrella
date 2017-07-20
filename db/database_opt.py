@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 import datetime
+from calendar import monthrange
 
 class TBU_db:
 	
@@ -51,21 +52,23 @@ class TBU_db:
 			line["pwd"] = new_pwd
 			collection.save(line)
 
-	def reset_email(pid,new_email):
+	def reset_email(uid,new_email):
 		collection = self.db.user
 		res = collection.find({"id":uid})
 		for line in res:
 			line["e_mail"] = new_email
 			collection.save(line)
 	
-	def add_expire(pid,time_added):
+	def add_expire(uid,time_added):
 		collection = self.db.account
 		res = collection.find({"id":uid})
 		for line in res:
-			t = line["expire_time"]
-			print(t)
-			#line["expire_time"] = t
-			#collection.save(line)
+			t = line["expire_time"].split(sep='-')
+			expire = datetime.time(t[0],t[1],t[2])
+			for i in range(0,time_added):
+				expire = expire + datetime.timedelta(days=monthrange(expire.year,expire.month)[1])
+			line["expire_time"] = expire.isoformat()
+			collection.save(line)
 
 
 if __name__ == '__main__':
