@@ -9,6 +9,8 @@
 
 * Build front-end & back-end base on vue(js) & eve(python) 
 
+* Add other protocals to the server since SS might not be available in the future.
+
 ### Added Jul 11 late nignt
 
 * Develope interfaces for ShadowsocksR many users, and maybe a front-end for later work.
