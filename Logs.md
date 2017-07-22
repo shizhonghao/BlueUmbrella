@@ -46,3 +46,15 @@
 >> user(for testing, will be deleted later)
 
 * Build database_opt.py under /home/frank/test for any database command
+
+### Jul 23
+
+After a long time of afking, we started to work on the back-end.
+
+* Restructured the back-end
+
+* Implemented authentication (cookies & token) based on `flask_login`
+
+* Rewrote the schema of the database (See App/models.py `class User`)
+
+* Wrote a small toolbox based on mongoengine to manage the database
