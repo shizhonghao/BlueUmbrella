@@ -1,15 +1,11 @@
-from flask_security import Security, MongoEngineUserDatastore, UserMixin, RoleMixin, login_required
 from flask_mongoengine import MongoEngine
+from flask_login import UserMixin
 from App import db
 
-class Role(db.Document, RoleMixin):
-    name = db.StringField(max_lentgh=80, unique=True)
-    description = db.StringField(max_length=255)
 
 class User(db.Document, UserMixin):
-    username = db.StringField(max_length=20, unique=True)
-    password = db.StringField(max_length=255)
+    username = db.StringField(max_length=20, required=True, unique=True)
+    password = db.StringField(max_length=255, required=True)
     email = db.StringField(max_length=255)
-    expire_date = db.DateTimeField()
-    active = db.BooleanField(default=True)
-    roles = db.ListField(db.ReferenceField(Role), default=[])
+    is_active = db.BooleanField(default=True)
+    is_admin = db.BooleanField(default=False)

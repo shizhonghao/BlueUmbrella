@@ -1,19 +1,21 @@
 from flask_restful import Resource, fields, marshal_with, Api, reqparse
-from flask_security import auth_token_required, roles_required, login_user, login_required
-from flask import jsonify, make_response, abort, request, g, url_for
-from flask_security.utils import encrypt_password, verify_password
+from flask import jsonify, make_response, abort, request, g, url_for, current_app
+from flask_login import current_user
+from App.auth import login_required
 
 class Users(Resource):
-    @login_required
-    @auth_token_required
-    @roles_required('admin')
+    @login_required(admin=True)
     def get(self):
-        pass
+        # if not current_user.is_authenticated:
+        #     return current_app.login_manager.unauthorized()
+        # if not current_user.is_admin:
+        #     return current_app.login_manager.unauthorized()     
+        return jsonify(Status="allright")
 
 class Serverinfo(Resource):
-    @login_required
+    @login_required()
     def get(self):
-        pass
+        return jsonify(Status="allright")
 
 # class Login(Resource):
 #     def post(self):
