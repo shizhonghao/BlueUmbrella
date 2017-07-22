@@ -42,7 +42,7 @@ def login():
             login_user(user, remember=True)
             return jsonify(Token=get_token(user)) 
         else:
-            raise APIException("Wrong Info", "Wrong password!", 500)
+            raise APIException("Wrong Info", "Wrong username or password!", 500)
     else:
         if current_user.is_authenticated:
             return jsonify(CurrentUser=current_user.username)
