@@ -15,15 +15,15 @@ class Serverinfo(Resource):
     def get(self):
         pass
 
-class Login(Resource):
-    def post(self):
-        args = reqparse.RequestParser() \
-            .add_argument('username', type=str, location='json', required=True, help="用户名不能为空") \
-            .add_argument('password', type=str, location='json', required=True, help="密码不能为空") \
-            .parse_args()
-        user = User.authenticate(args['username'], args['password'])
-        if user:
-            login_user(user=user)
-            return {"message": "登陆成功", "token": user.get_auth_token()}, 200
-        else:
-            return {"message": "用户名或密码错误"}, 401
+# class Login(Resource):
+#     def post(self):
+#         args = reqparse.RequestParser() \
+#             .add_argument('username', type=str, location='json', required=True, help="用户名不能为空") \
+#             .add_argument('password', type=str, location='json', required=True, help="密码不能为空") \
+#             .parse_args()
+#         user = User.authenticate(args['username'], args['password'])
+#         if user:
+#             login_user(username=user)
+#             return {"message": "登陆成功", "token": user.get_auth_token()}, 200
+#         else:
+#             return {"message": "用户名或密码错误"}, 401

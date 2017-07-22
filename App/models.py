@@ -7,7 +7,7 @@ class Role(db.Document, RoleMixin):
     description = db.StringField(max_length=255)
 
 class User(db.Document, UserMixin):
-    username = db.StringField(max_length=20)
+    username = db.StringField(max_length=20, unique=True)
     password = db.StringField(max_length=255)
     email = db.StringField(max_length=255)
     expire_date = db.DateTimeField()
