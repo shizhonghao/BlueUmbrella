@@ -10,12 +10,13 @@
 
 Users:
 
-        Endpoint        |     Meaning
-    GET /users          | List all users *admin*  
-   GET /users/1/        | List a specific user  
-   POST /users          | Add a new user *admin*  
-  PATCH /users/1/       | Update a specific user  
-  DELETE /users/1/      | Delete a user  
+ |       Endpoint   |        Meaning         |
+ | ---------------- | ---------------------- |
+ |   GET /users     | List all users *admin* |
+ |  GET /users/1/   | List a specific user   |
+ |  POST /users     | Add a new user *admin* | 
+ | PATCH /users/1/  | Update a specific user |
+ | DELETE /users/1/ | Delete a user          |
 
 About status code : [link](http://www.restapitutorial.com/lessons/httpmethods.html)
 
