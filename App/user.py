@@ -7,8 +7,8 @@ def get_mongodb_info(dic):
 	pass
 
 def get_all_users():
-	f = open("/var/www/shadowsocksr/mudb.json","r")
-	data = json.load(f)
+	with open("/var/www/shadowsocksr/mudb.json","r") as f:
+		data = json.load(f)
 	user_info = {}
 	for line in data:
 		change_key_name(line,"d","downward_transfer")
@@ -18,12 +18,11 @@ def get_all_users():
 		change_key_name(line,"enable","transfer_enable")
 		get_mongodb_info(line)
 		user_info[line["user"]] = line
-	info = {"users":user_info}
-    return info
+    return user_info
 
 def get_user(username):
-	f = open("/var/www/shadowsocksr/mudb.json","r")
-	data = json.load(f)
+	with open("/var/www/shadowsocksr/mudb.json","r") as f:
+		data = json.load(f)
 	for line in data:
 		if(line["user"] == username):
 			change_key_name(line,"d","downward_transfer")
