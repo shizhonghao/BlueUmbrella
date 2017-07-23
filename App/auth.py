@@ -14,7 +14,7 @@ def user_loader(user_id):
     from App.models import User
     return User.objects(id=user_id).first()
 
-
+# Customized login method (by token)
 @login_manager.request_loader
 def request_loader(request):
     token = request.headers.get('Authentication')
@@ -61,7 +61,7 @@ def get_token(user):
     return s.dumps({"username":user.username}).decode('utf-8')
 
 
-#Error handlers
+# A common type of error handler, may be refined later
 class APIException(Exception):
     def __init__(self, error_id, message, code=500):
         super(Exception, self).__init__()
@@ -78,28 +78,38 @@ class APIException(Exception):
         }
         return result
 
-
+# 401 Error, follows the template of APIException
 @login_manager.unauthorized_handler
 def unauthorized_handler():
     response = jsonify({"id":"Unauthorized", "code":401, "message":"You may need to login or you don't have the permission"})
     response.status_code = 401
     return response
 
+# Catch the exception and return the jsonified data with status code
 @auth.errorhandler(APIException)
 def handle_api_exception(error):
     response = jsonify(error.to_dict())
     response.status_code = error.code 
     return response
 
-#Overrided wrapper for supporting permission contro
-def login_required(admin=False):
-    def wrapper(fn):
-        @wraps(fn)
-        def decorated_view(*args, **kwargs):
-            if not current_user.is_authenticated:
-                return current_app.login_manager.unauthorized()
-            if admin == True and (not current_user.is_admin):
-                return current_app.login_manager.unauthorized()
-            return fn(*args, **kwargs)
-        return decorated_view
-    return wrapper
+# A decorator for requiring admin permission
+def admin_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if not current_user.is_admin:
+            return current_app.login_manager.unauthorized()
+        return f(*args, **kwargs)
+    return decorated
+
+# # Overrided wrapper for supporting permission contro
+# def login_required(admin=False):
+#     def wrapper(fn):
+#         @wraps(fn)
+#         def decorated_view(*args, **kwargs):
+#             if not current_user.is_authenticated:
+#                 return current_app.login_manager.unauthorized()
+#             if admin == True and (not current_user.is_admin):
+#                 return current_app.login_manager.unauthorized()
+#             return fn(*args, **kwargs)
+#         return decorated_view
+#     return wrapper
