@@ -24,7 +24,7 @@ About status code : [link](http://www.restapitutorial.com/lessons/httpmethods.ht
 ### Requeset body structure
 
 For all users (Only accessible for admins)
-```json
+```javascript
   {
     "user": {
       "email" : "str",
@@ -34,9 +34,8 @@ For all users (Only accessible for admins)
   }
 ```
 
-
-```json
 For a specific user
+```javascript
   {
     "user" : "str",               //Primary key, Only Available in GET
     "password" : "str",
