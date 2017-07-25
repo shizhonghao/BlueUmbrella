@@ -12,6 +12,5 @@ app.register_blueprint(auth)
 db = MongoEngine(app)
 login_manager.init_app(app)
 
-
 from App.models import User
 from App.routes import api
