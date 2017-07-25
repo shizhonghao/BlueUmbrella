@@ -2,6 +2,7 @@ from flask_mongoengine import MongoEngine
 from flask_login import UserMixin
 from App import db
 import json
+from copy import deepcopy
 
 #mongodb model
 class User(db.Document, UserMixin):
@@ -23,6 +24,12 @@ def change_keys(dic):
     dic["enable"] = bool(dic["enable"])
 	return dic
 
+def change_keys_back(dic):
+    pass
+
+def get_available_port():
+    pass
+
 def singleton(cls, *args, **kw):  
     instances = {}  
     def _singleton():  
@@ -43,3 +50,25 @@ class SSUsers():
 
     def get(self, username):
         return self.data.get(username)
+    
+    def add(self, username, password, method = '', protocol = '', obfs = ''):
+        available_port = get_available_port()
+        #prepare a dictionary with user info 
+        #(without username, in the form of self.data)
+        user_info = dict()
+        pass
+        self.data["username"] = user_info.copy()
+        change_keys_back(user_info)
+        #then add username back
+        user_info["user"]=username
+        #file operation to put user_info back to mudb.json
+    
+    def modify(self, username, args):
+        #args is a dict, try to update self.data[username] from args
+        #args may or maynot contain all possible things (i.e. password, obfs, protocol)
+        pass
+    
+    def delete(self, username):
+        #delete everything from mudb.json and self.data
+        pass
+        
