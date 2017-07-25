@@ -28,12 +28,13 @@ def change_keys_back(dic):
     change_key_name(dic,"downward_transfer","d")
     change_key_name(dic,"upward_transfer","u")
     change_key_name(dic,"ss_password","passwd")
-    dic["enable"] = 1 if dic["enable"] == True else 0
+    dic["enable"] = int(dic["enable"])
     return dic
     pass
 
 def get_available_port():
     pass
+
 
 def singleton(cls, *args, **kw):  
     instances = {}  
@@ -49,6 +50,10 @@ class SSUsers():
         with open("/var/www/shadowsocksr/mudb.json", "r") as f:
             self.data = json.load(f)
         self.data = {line.pop("user"):line for line in map(change_keys, self.data)}
+
+    def atomic_cmp(json_data):
+        #compare self.data with json data
+        #which side of the data should be preserved will be decided later
 
     def get_all(self):
         return self.data
@@ -84,6 +89,7 @@ class SSUsers():
     
     def modify(self, username, args):
         #args is a dict, try to update self.data[username] from args
+        #args may or maynot contain all possible things (i.e. password, obfs, protocol)
         user_info = self.data[username]
         for (key,val) in args.items():
             user_info[key] = val
@@ -101,8 +107,6 @@ class SSUsers():
         with open("/var/www/shadowsocksr/mudb.json", "w") as f:
             json.dump(json_data,f,sort_keys = True,indent = 4)
 
-        #args may or maynot contain all possible things (i.e. password, obfs, protocol)
-        pass
     
     def delete(self, username):
         #delete everything from mudb.json and self.data
@@ -117,5 +121,3 @@ class SSUsers():
         with open("/var/www/shadowsocksr/mudb.json", "w") as f:
             json.dump(json_data,f,sort_keys = True,indent = 4)
 
-        pass
-        
