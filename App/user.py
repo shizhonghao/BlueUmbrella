@@ -1,37 +1,21 @@
 import json
 
-def change_key_name(dic,key_old,key_new):
+def change_key_name(dic, key_old, key_new):
 	dic[key_new] = dic.pop(key_old)
 
-def get_mongodb_info(dic):
-	pass
+def change_keys(dic):
+	change_key_name(dic,"d","downward_transfer")
+	change_key_name(dic,"u","upward_transfer")
+	change_key_name(dic,"passwd","ss_password")
+	return dic
 
 def get_all_users():
 	with open("/var/www/shadowsocksr/mudb.json","r") as f:
 		data = json.load(f)
-	user_info = {}
-	for line in data:
-		change_key_name(line,"d","downward_transfer")
-		change_key_name(line,"u","upward_transfer")
-		change_key_name(line,"passwd","password")
-		line.pop("transfer_enable")
-		change_key_name(line,"enable","transfer_enable")
-		get_mongodb_info(line)
-		user_info[line["user"]] = line
-    return user_info
+	return {line.pop("user"):line for line in map(change_keys, data)}
 
 def get_user(username):
-	with open("/var/www/shadowsocksr/mudb.json","r") as f:
-		data = json.load(f)
-	for line in data:
-		if(line["user"] == username):
-			change_key_name(line,"d","downward_transfer")
-			change_key_name(line,"u","upward_transfer")
-			change_key_name(line,"passwd","password")
-			line.pop("transfer_enable")
-			change_key_name(line,"enable","transfer_enable")
-			info = line
-	return info
+	return get_all_users()["username"]
 
 def modify_user(username):
     pass
