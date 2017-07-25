@@ -20,6 +20,7 @@ def change_keys(dic):
 	change_key_name(dic,"d","downward_transfer")
 	change_key_name(dic,"u","upward_transfer")
 	change_key_name(dic,"passwd","ss_password")
+    dic["enable"] = bool(dic["enable"])
 	return dic
 
 def singleton(cls, *args, **kw):  
