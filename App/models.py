@@ -25,6 +25,11 @@ def change_keys(dic):
 	return dic
 
 def change_keys_back(dic):
+    change_key_name(dic,"downward_transfer","d")
+    change_key_name(dic,"upward_transfer","u")
+    change_key_name(dic,"ss_password","passwd")
+    dic["enable"] = 1 if dic["enable"] == True else 0
+    return dic
     pass
 
 def get_available_port():
@@ -51,24 +56,66 @@ class SSUsers():
     def get(self, username):
         return self.data.get(username)
     
-    def add(self, username, password, method = '', protocol = '', obfs = ''):
+    def add(self, username, password, method = 'aes-128-ctr', protocol = 'auth_aes128_md5', obfs = 'tls1.2_ticket_auth_compatible'):
         available_port = get_available_port()
         #prepare a dictionary with user info 
         #(without username, in the form of self.data)
-        user_info = dict()
+        user_info = {}
+        user_info["downward_transfer"] = 0
+        user_info["enable"] = 0
+        user_info["method"] = method
+        user_info["obfs"] = obfs
+        user_info["passwd"] = password
+        user_info["port"] = available_port
+        user_info["transfer_enable"] = 9007199254740992
+        user_info["upward_transfer"] = 0
         pass
         self.data["username"] = user_info.copy()
         change_keys_back(user_info)
         #then add username back
         user_info["user"]=username
         #file operation to put user_info back to mudb.json
+        with open("/var/www/shadowsocksr/mudb.json", "r") as f:
+            json_data = json.load(f)
+            json_data.append(user_info)
+        with open("/var/www/shadowsocksr/mudb.json", "w") as f:
+            json.dump(json_data,f,sort_keys = True,indent = 4)
+
     
     def modify(self, username, args):
         #args is a dict, try to update self.data[username] from args
+        user_info = self.data[username]
+        for (key,val) in args.items():
+            user_info[key] = val
+
+        write_back = user_info.copy()
+        change_keys_back(write_back)
+        write_back["user"]=username
+        with open("/var/www/shadowsocksr/mudb.json", "r") as f:
+            json_data = json.load(f)
+            for user_info in json_data:
+                if(user_info["user"] == username):
+                    user_info = write_back
+                    break
+
+        with open("/var/www/shadowsocksr/mudb.json", "w") as f:
+            json.dump(json_data,f,sort_keys = True,indent = 4)
+
         #args may or maynot contain all possible things (i.e. password, obfs, protocol)
         pass
     
     def delete(self, username):
         #delete everything from mudb.json and self.data
+        self.data.pop(username)
+        with open("/var/www/shadowsocksr/mudb.json", "r") as f:
+            json_data = json.load(f)
+            for user_info in json_data:
+                if(user_info["user"] == username):
+                    user_info.remove(user_info)
+                    break
+                    
+        with open("/var/www/shadowsocksr/mudb.json", "w") as f:
+            json.dump(json_data,f,sort_keys = True,indent = 4)
+
         pass
         
