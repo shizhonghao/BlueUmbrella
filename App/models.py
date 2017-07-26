@@ -62,10 +62,10 @@ class SSUsers():
             tmp = json.load(f)
         tmp =  {line.pop("user"):line for line in map(change_keys, tmp)}
         for k in tmp.keys():
-            if not self.data.has_key(k):
+            if not k in self.data:
                 return False
         for k in self.data.keys():
-            if not tmp.has_key(k):
+            if not k in tmp:
                 return False
             else:
                 for sub_k in self.data[k].keys():
@@ -83,16 +83,18 @@ class SSUsers():
         available_port = get_available_port()
         #prepare a dictionary with user info 
         #(without username, in the form of self.data)
+        if self.get(username):
+            return False
         user_info = dict()
         user_info["downward_transfer"] = 0
         user_info["enable"] = 0
         user_info["method"] = method
         user_info["obfs"] = obfs
-        user_info["passwd"] = password
+        user_info["ss_password"] = password
         user_info["port"] = available_port
         user_info["transfer_enable"] = 9007199254740992
         user_info["upward_transfer"] = 0
-        self.data["username"] = user_info.copy()
+        self.data[username] = user_info.copy()
         change_keys_back(user_info)
         #then add username back
         user_info["user"]=username
@@ -106,7 +108,7 @@ class SSUsers():
     def modify(self, username, args):
         #args is a dict, try to update self.data[username] from args
         #args may or maynot contain all possible things (i.e. password, obfs, protocol)
-        if not self.data.has_key(username):
+        if not username in self.data:
             return False
         for key, val in args.items():
             self.data[username][key] = val
@@ -124,14 +126,14 @@ class SSUsers():
 
     def delete(self, username):
         #delete everything from mudb.json and self.data
-        if not self.data.has_key(username):
+        if not username in self.data:
             return False
         del self.data[username]
         with open("/var/www/shadowsocksr/mudb.json", "r") as f:
             json_data = json.load(f)
         for index, line in enumerate(json_data):
             if line["user"] == username:
-                del json[index]
+                del json_data[index]
                 break
         with open("/var/www/shadowsocksr/mudb.json", "w") as f:
             json.dump(json_data,f,sort_keys = True,indent = 4)
