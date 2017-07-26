@@ -74,10 +74,11 @@ class SSUsers():
         return True
     
     def get_all(self):
-        return self.data
+        return self.data.copy()
 
     def get(self, username):
-        return self.data.get(username)
+        return self.data.get(username).copy()
+
     
     def add(self, username, password, method = 'aes-128-ctr', protocol = 'auth_aes128_md5', obfs = 'tls1.2_ticket_auth_compatible'):
         available_port = get_available_port()

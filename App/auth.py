@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, current_app
 from flask_login import LoginManager, login_user, current_user, logout_user
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from App.config import SECRET_KEY, EXPIRATION
 from functools import wraps
 
@@ -45,15 +45,45 @@ def login():
             raise APIException("Wrong Info", "Wrong username or password!", 500)
     else:
         if current_user.is_authenticated:
+            #just for debugging here
             return jsonify(CurrentUser=current_user.username)
         else:
             return current_app.login_manager.unauthorized()
             
 
-@auth.route("/logout")
+@auth.route("/logout", methods=["GET"])
 def logout():
     logout_user()
     return jsonify({"Success":True})
+
+@auth.route("/register", methods=["POST"])
+def register():
+    if request.method == "POST":
+        from App.models import User, SSUsers
+        req = request.get_json()
+        if not req:
+            raise APIException("Bad Request", "Request should be json", 400)
+        if not (req.get('username') and req.get('password')):
+            raise APIException("Bad Request", "Need username and password", 400)
+        #Try if the username is existed
+        new = User.objects(username=req.get('username')):
+        if new:
+            raise APIException("Internal Error", "Existed user!", 500)
+        new = User(username = req.get('username'), \
+                    password = generate_password_hash(req.get('password')) \
+                    email = req.get('email') \
+                    is_active = True,\
+                    is_admin = False)
+        new.save()
+        SSUsers.add(req.get('username'), req.get('password'))
+        if SSUsers.verify():
+            #Need to do status handler
+            login_user(new, remember=True)
+            return {"Status": "Success!"}
+        else:
+            raise APIException("Internal Error", "Fail to create account, contact with admins", 500)
+    
+
 
 
 def get_token(user):
