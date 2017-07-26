@@ -110,8 +110,7 @@ class SSUsers():
         #args may or maynot contain all possible things (i.e. password, obfs, protocol)
         if not username in self.data:
             return False
-        for key, val in args.items():
-            self.data[username][key] = val
+        self.data[username].update(args)
         write_back = self.data[username].copy()
         change_keys_back(write_back)
         write_back["user"]=username
