@@ -1,30 +1,35 @@
 ## Intro
 
 ### CRUD
-* Login: 
-    * GET: if login, return `current_user.name` (for debugging), else return unauthorized.
-    * POST: receive `username` and `password`, return `Token`
+* `/login`: 
+    * GET: if login, return `current_user.username` (for debugging), else return unauthorized.
 
-* Logout:
-    * GET: return `Success` (Maybe remove or normalize later)
+    * POST: receive `username` and `password`, return `Token` if successfully logged in.
 
-Users:
+* `/logout`:
+    * GET: return `Success:True` (Maybe remove or normalize later)
 
- |       Endpoint   |        Meaning         |
- | ---------------- | ---------------------- |
- |   GET /users     | List all users *admin* |
- |  GET /users/1/   | List a specific user   |
- |  POST /users     | Add a new user *admin* | 
- | PATCH /users/1/  | Update a specific user |
- | DELETE /users/1/ | Delete a user          |
+* `/register`:
+    * POST: receive `username`, `password` and `email`(optional), return `Success:true` and `Token` if successfully registered and automatically logged in.
 
+* `/users`:
+    * GET: return user information (See below), required admin permission.
+
+* `/uesrs/<string:username>`
+    * GET: return specific user information (See below), required admin permission or `current_user.username == username`.
+
+    * PATCH: receive allowed args (See below), return `Success:true`, required admin permission or `current_user.username == username`.
+
+    * DELETE: return `Success:true`, required admin permission
+    
+    
 About status code : [link](http://www.restapitutorial.com/lessons/httpmethods.html)
 
 
 ### Requeset body structure
 
 For all users (Only accessible for admins)
-```javascript
+```json
   {
     "user": {
       "email" : "str",
@@ -35,17 +40,30 @@ For all users (Only accessible for admins)
 ```
 
 For a specific user
-```javascript
+```json
   {
-    "user" : "str",               //Primary key, Only Available in GET
-    "password" : "str",
-    "enable" : "bool",            //Only Available in GET
-    "port" : "int",               //Only Available in GET
+    "user" : "str",
+    "ss_password" : "str",
+    "email":"str",
+    "enable" : "bool",
+    "port" : "int",
     "method" : "str",
     "protocol" : "str",
     "obfs" : "str",
-    "transfer_enable" : "int",    //Only Available in GET
-    "upward_transfer" : "int",    //Only Available in GET
-    "downward_transfer" : "int"   //Only Available in GET
+    "transfer_enable" : "int",
+    "upward_transfer" : "int",
+    "downward_transfer" : "int"
   }
 ```
+
+Allowed args:
+```json
+  {
+    "email" : "str",
+    "ss_password" : "str",
+    "method" : "str",
+    "protocol": "str",
+    "obfs" : "str",
+    "transfer_enable" : "int, only by admin",
+    "enable" : "bool, only by admin"
+  }

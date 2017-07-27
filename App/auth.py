@@ -54,7 +54,7 @@ def login():
 @auth.route("/logout", methods=["GET"])
 def logout():
     logout_user()
-    return jsonify({"Success":True})
+    return jsonify(Success=True)
 
 @auth.route("/register", methods=["POST"])
 def register():
@@ -78,10 +78,11 @@ def register():
                     is_admin = False)
         new.save()
         SSUsers().add(req.get('username'), req.get('password'))
-        login_user(new, remember=True)
-        return jsonify(Status="Success", Token=get_token(new))
-        # else:
-        #     raise APIException("Internal Error", "Fail to create account, contact with admins", 500)
+        if SSUsers().verify():
+            login_user(new, remember=True)
+            return jsonify(Success=True, Token=get_token(new))
+        else:
+            raise APIException("Internal Error", "Fail to create account, contact with admins", 500)
     
 
 

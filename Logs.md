@@ -67,5 +67,8 @@ A short overview of recently works
 
 * Wrote a register interface (tested)
 
-* API for `GET /users` and `GET /users/<string:username>` (added the email part, tested)
+* Controller for `GET /users` and `GET /users/<string:username>` (added the email part, tested)
 
+* Controller for `DELETE /users/<username>` and `PATCH /users/<username>` (for PATCH, distinguish the function allowed by admin and regular users) (tested)
+
+Basically, we've accomplished the development of the back-end.

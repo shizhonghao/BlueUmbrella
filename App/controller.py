@@ -37,11 +37,47 @@ class SpecUser(Resource):
 		current_info['email'] = User.objects(username=username).first().email
 		return current_info
 
+	@login_required
 	def patch(self, username):
-		pass
+		if (not current_user.is_admin) and current_user.username != username:
+			return current_app.login_manager.unauthorized()
+		req = request.get_json()
+		args = dict()
+		#A request parser, to avoid request that is not allowed
+		if 'email' in req:
+			user = User.objects(username=username).first()
+			user.email = req['email']
+			user.save()
+		if 'ss_password' in req:
+			args['ss_password'] = req['ss_password']
+		if 'method' in req:
+			args['method'] = req['method']
+		if 'protocol' in req:
+			args['protocol'] = req['protocol']
+		if 'obfs' in req:
+			args['obfs'] = req['obfs']
+		if current_user.is_admin:
+			#Allow admin to enable or disable users
+			if 'enable' in req:
+				args['enable'] = req['enable']
+			if 'transfer_enable' in req:
+				args['transfer_enable'] = req['transfer_enable']
+		SSUsers().modify(username, args)
+		if SSUsers().verify():
+			return {"Success": True}
+		else:
+			return {"Status":"Error, contact the admin"}, 500
+			#need an error handler later
+	
+	@login_required
+	@admin_required
 
+	@login_required
+	@admin_required
 	def delete(self, username):
-		pass
+		SSUsers().delete(username)
+		User.objects(username=username).first().delete()
+		return {"Success": True}
 
 class Serverinfo(Resource):
 	@login_required
