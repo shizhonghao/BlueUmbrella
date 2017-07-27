@@ -1,0 +1,35 @@
+.login
+{
+    position:absolute;
+    top:25%;
+    left:37%;
+    padding:3px;
+    border:1px solid gray;
+    border-radius:.25rem;
+}
+
+
+.login_input input
+{
+    width:295px;
+    height:30px;
+    border-radius:.4rem;
+}
+
+
+.login_logo
+{
+    border:1px solid
+    border-radius:.3rem
+}
+
+.login_btn
+{
+    display:inline-block;
+    text-align:center;
+    white-space:nowrap;
+    vertical-align:middle;
+    cursor:pointer;
+    padding:.5rem 1rem;
+    border-radius .5rem;
+}
