@@ -6,24 +6,20 @@ A platform to help our friends to escape some walls.
 
 The platform we are building in should be capable of:
 
-1. Letting a user sign in/up.
+1. Sign up / Sign in
 
-2. Allowing a user to check his/her current account status(dataflow, connection time, available time etc). 
+2. Be able to check one's account info 
 
-3. Allowing a user to pay for his/her account(10￥/month)
+3. Allow a user to pay for his/her account(10￥/month)
 
-4. Providing VPN services for those users who still has available time in their account.
+4. Provide VPN services for those users who still has available time in their account.
 
-5. Allowing administrator to check the users status, may have to set user's available time manually.
+5. Allow administrator to check the users status, may have to set user's available time manually.
 
-## database design
+## Current status
 
-relational schema:
+Here's a [Todo list](https://github.com/raycursive/BlueUmbrella/blob/master/Todolist.md).
 
-user(id,pwd,e_mail)
+Here's our [working logs](https://github.com/raycursive/BlueUmbrella/blob/master/Logs.md), updating by our progress.
 
-account(id,expire_date)
-
-with primary key id(username)
-
-while the original stat(id,dataflow,connection_time) is now saved and maintained in ssr itself.
+Here's the [documentation](https://github.com/raycursive/BlueUmbrella/blob/master/App/Readme.md) of the API.

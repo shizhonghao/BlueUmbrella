@@ -13,9 +13,9 @@
 
 ### Added Jul 11 late nignt
 
-* **[Working on]** Develope interfaces for ShadowsocksR many users, and maybe a front-end for later work.
+* ~~ Develope interfaces for ShadowsocksR many users, and maybe a front-end for later work. ~~
 
-    * Note: as the version of many users we have used so far is based on mudbjson, the coordination with a **real** database may be concerned as a hidden problem.
+    * ~~ Note: as the version of many users we have used so far is based on mudbjson, the coordination with a **real** database may be concerned as a hidden problem. ~~
 
 * Start to operate the service
 
@@ -27,6 +27,6 @@
 
 ### Added Jun 23
 
-* Implement the controller
+* ~~ Implement the controller ~~
 
 * Start the implementation of front-end
