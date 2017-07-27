@@ -60,6 +60,8 @@ class SpecUser(Resource):
 			#Allow admin to enable or disable users
 			if 'enable' in req:
 				args['enable'] = req['enable']
+				#PLACEHOLDER
+				#set the expire_date in the mongodb
 			if 'transfer_enable' in req:
 				args['transfer_enable'] = req['transfer_enable']
 		SSUsers().modify(username, args)

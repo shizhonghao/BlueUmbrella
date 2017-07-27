@@ -1,26 +1,26 @@
 ## Intro
 
-### CRUD
+### Interfaces
 * `/login`: 
-    * GET: if login, return `current_user.username` (for debugging), else return unauthorized.
+    * `GET`: if login, return `current_user.username` (for debugging), else return unauthorized.
 
-    * POST: receive `username` and `password`, return `Token` if successfully logged in.
+    * `POST`: receive `username` and `password`, return `Token` if successfully logged in.
 
 * `/logout`:
-    * GET: return `Success:True` (Maybe remove or normalize later)
+    * `GET`: return `Success:True` (Maybe remove or normalize later)
 
 * `/register`:
-    * POST: receive `username`, `password` and `email`(optional), return `Success:true` and `Token` if successfully registered and automatically logged in.
+    * `POST`: receive `username`, `password` and `email`(optional), return `Success:true` and `Token` if successfully registered and automatically logged in.
 
 * `/users`:
-    * GET: return user information (See below), required admin permission.
+    * `GET`: return user information (See below), required admin permission.
 
 * `/uesrs/<string:username>`
-    * GET: return specific user information (See below), required admin permission or `current_user.username == username`.
+    * `GET`: return specific user information (See below), required admin permission or `current_user.username == username`.
 
-    * PATCH: receive allowed args (See below), return `Success:true`, required admin permission or `current_user.username == username`.
+    * `PATCH`: receive allowed args (See below), return `Success:true`, required admin permission or `current_user.username == username`.
 
-    * DELETE: return `Success:true`, required admin permission
+    * `DELETE`: return `Success:true`, required admin permission
     
     
 About status code : [link](http://www.restapitutorial.com/lessons/httpmethods.html)

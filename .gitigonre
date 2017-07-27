@@ -2,4 +2,4 @@ __pycache__/
 *.py[cod]
 App/__pycache__
 *$py.class
-
+.gitignore
