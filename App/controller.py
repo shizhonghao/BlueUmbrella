@@ -41,6 +41,7 @@ class SpecUser(Resource):
 		pass
 
 	def delete(self, username):
+		pass
 
 class Serverinfo(Resource):
 	@login_required

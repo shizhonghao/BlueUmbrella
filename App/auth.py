@@ -59,6 +59,8 @@ def logout():
 @auth.route("/register", methods=["POST"])
 def register():
     if request.method == "POST":
+        if current_user.is_authenticated:
+            raise APIException("Wrong Status", "You have already logged in!", 500)
         from App.models import User, SSUsers
         req = request.get_json()
         if not req:
@@ -66,22 +68,20 @@ def register():
         if not (req.get('username') and req.get('password')):
             raise APIException("Bad Request", "Need username and password", 400)
         #Try if the username is existed
-        new = User.objects(username=req.get('username')):
+        new = User.objects(username=req.get('username'))
         if new:
             raise APIException("Internal Error", "Existed user!", 500)
         new = User(username = req.get('username'), \
-                    password = generate_password_hash(req.get('password')) \
-                    email = req.get('email') \
+                    password = generate_password_hash(req.get('password')), \
+                    email = req.get('email'), \
                     is_active = True,\
                     is_admin = False)
         new.save()
-        SSUsers.add(req.get('username'), req.get('password'))
-        if SSUsers.verify():
-            #Need to do status handler
-            login_user(new, remember=True)
-            return {"Status": "Success!"}
-        else:
-            raise APIException("Internal Error", "Fail to create account, contact with admins", 500)
+        SSUsers().add(req.get('username'), req.get('password'))
+        login_user(new, remember=True)
+        return jsonify(Status="Success", Token=get_token(new))
+        # else:
+        #     raise APIException("Internal Error", "Fail to create account, contact with admins", 500)
     
 
 

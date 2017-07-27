@@ -74,9 +74,11 @@ class SSUsers():
         return True
     
     def get_all(self):
-        return self.data.copy()
+        return deepcopy(self.data)
 
     def get(self, username):
+        if not self.data.get(username):
+            return False
         return self.data.get(username).copy()
 
     

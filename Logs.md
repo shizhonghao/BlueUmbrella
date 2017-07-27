@@ -58,3 +58,14 @@ After a long time of afking, we started to work on the back-end.
 * Rewrote the schema of the database (See App/models.py `class User`)
 
 * Wrote a small toolbox based on mongoengine to manage the database
+
+### Jul 27
+
+A short overview of recently works
+
+* Implemented a model dealing with maintaining the status of mudb.json (the database of shadowsocksR) (by a singleton class) (tested all functions, works well)
+
+* Wrote a register interface (tested)
+
+* API for `GET /users` and `GET /users/<string:username>` (added the email part, tested)
+
