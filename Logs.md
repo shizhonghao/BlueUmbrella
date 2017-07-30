@@ -72,3 +72,11 @@ A short overview of recently works
 * Controller for `DELETE /users/<username>` and `PATCH /users/<username>` (for PATCH, distinguish the function allowed by admin and regular users) (tested)
 
 Basically, we've accomplished the development of the back-end.
+
+### Jul 31
+
+* Fix bugs: SSUsers.add -- lack of `protocol` key
+
+* Add feature: Allow user to modify their password in mongodb
+
+* Formally pushed our back-end onto the server at `api.tbufoundation.tk`
