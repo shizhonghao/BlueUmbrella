@@ -80,3 +80,7 @@ Basically, we've accomplished the development of the back-end.
 * Add feature: Allow user to modify their password in mongodb
 
 * Formally pushed our back-end onto the server at `api.tbufoundation.tk`
+
+* Note: Adding vue supporting into hexo-theme-next:
+    * themes/next/layout/_layout.swig add
+    `<script type="text/javascript" src="{{ url_for(theme.js) }}/src/vue.js"></script>`
