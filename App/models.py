@@ -89,14 +89,15 @@ class SSUsers():
         if self.get(username):
             return False
         user_info = dict()
-        user_info["downward_transfer"] = 0
         user_info["enable"] = 0
         user_info["method"] = method
         user_info["obfs"] = obfs
+        user_info["protocol"] = protocol
         user_info["ss_password"] = password
         user_info["port"] = available_port
         user_info["transfer_enable"] = 9007199254740992
         user_info["upward_transfer"] = 0
+        user_info["downward_transfer"] = 0
         self.data[username] = user_info.copy()
         change_keys_back(user_info)
         #then add username back

@@ -43,7 +43,7 @@ def login():
             return jsonify(Token=get_token(user)) 
         else:
             raise APIException("Wrong Info", "Wrong username or password!", 500)
-    else:
+    if request.method == "GET":
         if current_user.is_authenticated:
             #just for debugging here
             return jsonify(CurrentUser=current_user.username)
@@ -73,7 +73,8 @@ def register():
             raise APIException("Internal Error", "Existed user!", 500)
         new = User(username = req.get('username'), \
                     password = generate_password_hash(req.get('password')), \
-                    email = req.get('email'), \
+                    #if email does not exist in the request, set it as null string
+                    email = req.get('email',""), \
                     is_active = True,\
                     is_admin = False)
         new.save()

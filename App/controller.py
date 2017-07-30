@@ -1,6 +1,7 @@
 from flask import jsonify, make_response, abort, request, g, url_for, current_app
 from flask_restful import Resource, fields, marshal_with, reqparse
 from flask_login import current_user, login_required
+from werkzeug.security import generate_password_hash
 from App.auth import admin_required
 from App.models import User, SSUsers
 
@@ -44,6 +45,10 @@ class SpecUser(Resource):
 		req = request.get_json()
 		args = dict()
 		#A request parser, to avoid request that is not allowed
+		if 'password' in req:
+			user = User.objects(username=username).first()
+			user.password = generate_password_hash(req['password'])
+			user.save()
 		if 'email' in req:
 			user = User.objects(username=username).first()
 			user.email = req['email']
