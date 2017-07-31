@@ -4,30 +4,35 @@
       <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row> -->
     <el-row>
-      <el-col :span="6" :offset="9">
+      <el-col :span="4" :offset="10">
         <div>
-          Username: <el-input v-model="username" placeholder="Should be here"></el-input>
+          <el-input v-model="username" placeholder="Username"></el-input>
         </div>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :span="6" :offset="9">
+      <el-col :span="4" :offset="10">
         <div>
-          Password: <el-input v-model="password" placeholder="Should be here"></el-input>
+          <el-input v-model="password" placeholder="Password"></el-input>
         </div>
       </el-col>
     </el-row>
       <el-row>
-      <el-col :span="6" :offset="9">
+      <el-col :span="4" :offset="10">
         <div>
-          Email: <el-input v-model="email" placeholder="Should be here"></el-input>
+          <el-input v-model="email" placeholder="Email address"></el-input>
         </div>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :span="6" :offset="9">
+      <el-col :span="2" :offset="10">
         <div>
           <el-button type="primary">注册</el-button>
+        </div>
+      </el-col>
+      <el-col :span="2">
+        <div>
+          <el-button type="primary" @click="$router.push('/login')">返回</el-button>
         </div>
       </el-col>
     </el-row>
@@ -56,10 +61,10 @@ export default {
 <style scoped>
   .grid-content {
     border-radius: 4px;
-    min-height: 36px;
+    min-height: 34px;
   }
   .bg-purple {
-    background: #d3dce6;
+    background: #d3dce4;
   }
   .el-row {
     margin-bottom: 20px;
@@ -72,6 +77,6 @@ export default {
   }
   .row-bg {
     padding: 10px 0;
-    background-color: #f9fafc;
+    background-color: #f10fafc;
   }
 </style>

@@ -40,7 +40,7 @@ def login():
         user = User.objects(username=req['username']).first()
         if user and check_password_hash(user.password, req['password']):
             login_user(user, remember=True)
-            return jsonify(Token=get_token(user)) 
+            return jsonify(CurrentUser=current_user.username, Token=get_token(user)) 
         else:
             raise APIException("Wrong Info", "Wrong username or password!", 500)
     if request.method == "GET":

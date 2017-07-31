@@ -1,5 +1,4 @@
 <template>
-  <transition-group name="fade">
     <div class="view">
       <!-- <el-row>
         <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
@@ -7,7 +6,7 @@
       <el-row>
         <el-col :span="6" :offset="9">
           <div>
-            Username: <el-input v-model="username" placeholder="Should be here"></el-input>
+            {{ username }} <el-input v-model="username" placeholder="Should be here"></el-input>
           </div>
         </el-col>
       </el-row>
@@ -26,7 +25,6 @@
         </el-col>
       </el-row>
     </div>
-  </transition-group>
 </template>
 
 <script>
@@ -34,13 +32,13 @@ export default {
   name: 'view',
   data () {
     return {
-      username: '',
+      username: this.$username,
       password: ''
     }
   },
   methods: {
     login_req() {
-      return true
+      this.username = this.$username
     }
   }
 }

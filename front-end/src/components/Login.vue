@@ -4,16 +4,18 @@
       <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row> -->
     <el-row>
-      <el-col :span="6" :offset="9">
+    </el-row>
+    <el-row>
+      <el-col :span="4" :offset="10">
         <div>
-          Username: <el-input v-model="username" placeholder="Should be here"></el-input>
+          <el-input v-model="username" placeholder="Username"></el-input>
         </div>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :span="6" :offset="9">
+      <el-col :span="4" :offset="10">
         <div>
-          Password: <el-input v-model="password" placeholder="Should be here"></el-input>
+          <el-input v-model="password" placeholder="Password"></el-input>
         </div>
       </el-col>
     </el-row>
@@ -44,8 +46,32 @@ export default {
     }
   },
   methods: {
-    login: (event) => {
-      return false
+    login() {
+      if(this.username == "" || this.password == ""){
+        alert('INPUT YOUR INFO FIRST')
+        //Will be overridden later
+      } else {
+        this.$ajax.post('/login', {
+          username: this.username,
+          password: this.password
+        })
+        .then((response) => {
+          if(response.status == 200){
+            // Logged in
+            this.$state = true
+            this.$username = response.data.CurrentUser
+            console.log(response.data)
+            console.log(this.$state)
+            this.$router.push('/view')
+          } else {
+            alert('NOT MATCH!')
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          alert('NOT MATCH!')
+        })
+      }
     }
   }
 }

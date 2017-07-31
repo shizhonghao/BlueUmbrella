@@ -11,7 +11,11 @@ Vue.use(ElementUI)
 Vue.prototype.$ajax = axios
 // $state stands for logging in state
 Vue.prototype.$state = false
+Vue.prototype.$username = ''
 Vue.config.productionTip = false
+axios.defaults.withCredentials = true
+axios.defaults.baseURL = 'http://api.tbufoundation.tk'
+
 
 /* eslint-disable no-new */
 new Vue({
@@ -22,31 +26,25 @@ new Vue({
     '$route':'checkLogin'
   },
   created() { 
-    this.getStatus();
     this.checkLogin();
   },
   methods:{ 
     getStatus(){
-      axios.get('http://api.tbufoundation.tk/login')
+      var status = false
+      axios.get('/login')
         .then((response) => {
-          this.$state = response.data.LoggedIn;
+          console.log("1", response.data.LoggedIn)
+           status = response.data.LoggedIn
         })
         .catch((error) => {
           console.log(error);
         });
+        console.log("2", status)
+      return status
+      
     },
-    checkLogin() {
-      if(this.$state){ 
-      // If logged in
-        if(this.$route.name == "Login" || this.$route.name == "Register" || this.$route.path == "/"){
-          this.$router.push('/view')
-        }
-      } else { 
-      // If didn't log in
-        if(this.$route.name == "View" || this.$route.name == "Logout" || this.$route.name == "Edit" || this.$route.path == "/"){
-          this.$router.push('/login');
-        }
-      }
+    checkLogin(){
+      console.log("3",(this.getStatus().then()))
     }
   }
 })
