@@ -4,23 +4,16 @@
       <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row> -->
     <el-row>
-      <el-col :span="6" :offset="9">
-        <div>
-          Username: <el-input v-model="username" placeholder="Should be here"></el-input>
-        </div>
-      </el-col>
     </el-row>
     <el-row>
-      <el-col :span="6" :offset="9">
+      <el-col :span="3">
         <div>
-          Password: <el-input v-model="password" placeholder="Should be here"></el-input>
+          当前用户是: {{ current_user() }}
         </div>
       </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="6" :offset="9">
+      <el-col :span="6" :offset="6">
         <div>
-          <el-button type="primary">Logout</el-button>
+          <el-button @click="logout" type="primary">Logout</el-button>
         </div>
       </el-col>
     </el-row>
@@ -30,15 +23,16 @@
 <script>
 export default {
   name: 'logout',
-  data () {
-    return {
-      username: '',
-      password: ''
-    }
-  },
   methods: {
-    login_req() {
-      return true
+    logout(){
+      this.$ajax.get('/logout')
+      .then( (response) => {
+        console.log(response.data)
+        this.$router.push('/login')
+      })
+    },
+    current_user(){
+      return localStorage.getItem("username")
     }
   }
 }

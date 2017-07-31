@@ -9,7 +9,27 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data(){
+    return {
+      status: false
+    }
+  },
+  created(){
+    this.$ajax.get('/login')
+    .then((response) => {
+      localStorage.setItem("state", response.data.LoggedIn)
+      localStorage.setItem("username", response.data.CurrentUser)
+      if(localStorage.getItem("state")){
+        this.$router.push('/view')
+      } else {
+        this.$router.push('/login')
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
 }
 </script>
 

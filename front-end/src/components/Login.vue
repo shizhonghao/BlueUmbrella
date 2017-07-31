@@ -58,10 +58,8 @@ export default {
         .then((response) => {
           if(response.status == 200){
             // Logged in
-            this.$state = true
-            this.$username = response.data.CurrentUser
-            console.log(response.data)
-            console.log(this.$state)
+            localStorage.setItem("state", true)
+            localStorage.setItem("username", response.data.CurrentUser)
             this.$router.push('/view')
           } else {
             alert('NOT MATCH!')
