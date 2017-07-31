@@ -5,15 +5,29 @@
     </el-row> -->
     <el-row>
     </el-row>
+    <!-- Navigate Row  -->
     <el-row>
-      <el-col :span="3">
+      <el-col :span="6" :offset="4">
         <div>
-          当前用户是: {{ current_user() }}
+          当前用户是: {{ current_user }}
         </div>
       </el-col>
       <el-col :span="6" :offset="6">
         <div>
           <el-button @click="logout" type="primary">Logout</el-button>
+        </div>
+      </el-col>
+    </el-row>
+    <!-- Row for datas (prototype)  -->
+    <el-row>
+      <el-col :span="6" :offset="4">
+        <div>
+          Username:
+        </div>
+      </el-col>
+      <el-col :span="6" :offset="2">
+        <div>
+          Ray
         </div>
       </el-col>
     </el-row>
@@ -23,6 +37,11 @@
 <script>
 export default {
   name: 'logout',
+  computed: {
+    current_user(){
+      return localStorage.getItem("username")
+    }
+  },
   methods: {
     logout(){
       this.$ajax.get('/logout')
@@ -30,9 +49,6 @@ export default {
         console.log(response.data)
         this.$router.push('/login')
       })
-    },
-    current_user(){
-      return localStorage.getItem("username")
     }
   }
 }

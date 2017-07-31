@@ -1,30 +1,36 @@
 <template>
-    <div class="view">
-      <!-- <el-row>
-        <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
-      </el-row> -->
-      <el-row>
-        <el-col :span="6" :offset="9">
-          <div>
-            {{ username }} <el-input v-model="username" placeholder="Should be here"></el-input>
-          </div>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="6" :offset="9">
-          <div>
-            Password: <el-input v-model="password" placeholder="Should be here"></el-input>
-          </div>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="6" :offset="9">
-          <div>
-            <el-button type="primary">这次不是登录</el-button>
-          </div>
-        </el-col>
-      </el-row>
-    </div>
+  <div class="view">
+    <!-- <el-row>
+      <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
+    </el-row> -->
+    <el-row>
+    </el-row>
+    <!-- Navigation Row  -->
+    <el-row>
+      <el-col :span="6" :offset="4">
+        <div>
+          当前用户是: {{ current_user }}
+        </div>
+      </el-col>
+      <el-col :span="2" :offset="6">
+        <el-button @click="$router.push('/logout')" type="primary">登出</el-button>
+      </el-col>
+    </el-row>
+    
+    <!-- Row for datas (prototype)  -->
+    <el-row>
+      <el-col :span="4" :offset="7">
+        <div>
+          Username:
+        </div>
+      </el-col>
+      <el-col :span="4" :offset="1">
+        <div>
+          Ray
+        </div>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -34,6 +40,11 @@ export default {
     return {
       username: this.$username,
       password: ''
+    }
+  },
+  computed:{
+    current_user (){
+      return localStorage.getItem("username")
     }
   },
   methods: {
