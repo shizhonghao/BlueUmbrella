@@ -46,9 +46,9 @@ def login():
     if request.method == "GET":
         if current_user.is_authenticated:
             #just for debugging here
-            return jsonify(CurrentUser=current_user.username)
+            return jsonify(LoggedIn=True, CurrentUser=current_user.username)
         else:
-            return current_app.login_manager.unauthorized()
+            return jsonify(LoggedIn=False)
             
 
 @auth.route("/logout", methods=["GET"])
