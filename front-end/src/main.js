@@ -12,8 +12,6 @@ Vue.use(ElementUI)
 Vue.use(Vuex)
 Vue.prototype.$ajax = axios
 // $state stands for logging in state
-localStorage.setItem("state", false)
-localStorage.setItem("username", '')
 Vue.config.productionTip = false
 axios.defaults.withCredentials = true
 axios.defaults.baseURL = 'http://api.tbufoundation.tk'

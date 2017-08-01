@@ -48,7 +48,7 @@ export default {
   methods: {
     login() {
       if(this.username == "" || this.password == ""){
-        alert('INPUT YOUR INFO FIRST')
+        $this.$message.error('请先输入用户名和密码')
         //Will be overridden later
       } else {
         this.$ajax.post('/login', {
@@ -56,18 +56,22 @@ export default {
           password: this.password
         })
         .then((response) => {
-          if(response.status == 200){
-            // Logged in
-            localStorage.setItem("state", true)
-            localStorage.setItem("username", response.data.CurrentUser)
-            this.$router.push('/view')
-          } else {
-            alert('NOT MATCH!')
-          }
+          // Logged in
+          sessionStorage.setItem("state", true)
+          sessionStorage.setItem("username", response.data.CurrentUser)
+          this.$router.push('/view')
         })
         .catch((error) => {
-          console.log(error)
-          alert('NOT MATCH!')
+          // Need to be overridden
+          if(error.response){
+            if(error.response.status == 500){
+              $this.$message.error('用户名或密码不正确！')
+            } else {
+              console.log(error)
+            }
+          } else {
+            console.log(error)
+          }
         })
       }
     }

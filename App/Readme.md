@@ -2,7 +2,7 @@
 
 ### Interfaces
 * `/login`: 
-    * `GET`: if login, return `current_user.username` (for debugging), else return unauthorized.
+    * `GET`: if login, return `CurrentUser:current_user.username`, else return unauthorized.
 
     * `POST`: receive `username` and `password`, return `Token` if successfully logged in.
 
@@ -10,7 +10,7 @@
     * `GET`: return `Success:True` (Maybe remove or normalize later)
 
 * `/register`:
-    * `POST`: receive `username`, `password` and `email`(optional), return `Success:true` and `Token` if successfully registered and automatically logged in.
+    * `POST`: receive `username`, `password` and `email`(optional), return `CurrentUser:current_user.username` and `Token` if successfully registered and automatically logged in.
 
 * `/users`:
     * `GET`: return user information (See below), required admin permission.

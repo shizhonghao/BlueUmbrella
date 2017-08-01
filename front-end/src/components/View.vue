@@ -12,7 +12,7 @@
           当前用户是: {{ current_user }}
         </div>
       </el-col>
-      <el-col :span="1" :offset="7">
+      <el-col :span="2" :offset="6">
         <el-button @click="$router.push('/logout')" type="primary">登出</el-button>
       </el-col>
     </el-row>
@@ -22,22 +22,24 @@
       <el-col :span="12" :offset="6">
         <el-table 
           :data="tableData" 
-          style="width:100%;overflow:hidden;"
-          show-header="false"
+          style="width:100%;overflow-x: hidden !important;"
+          :show-header="false"
+          :fit="false"
           border>
           <el-table-column
             prop="key"
-            width="100"
+            width="120"
             label="键">
           </el-table-column>
           <el-table-column
             prop="value"
-            width="180"
+            width="200"
             label="值">
           </el-table-column>
           <el-table-column
             prop="description"
-            label="描述">
+            label="描述"
+            width="295">
           </el-table-column>
         </el-table>
       </el-col>
@@ -54,7 +56,7 @@ export default {
   },
   computed:{
     current_user(){
-      return localStorage.getItem("username")
+      return sessionStorage.getItem("username")
     },
     tableData(){
       return [{
@@ -71,8 +73,14 @@ export default {
   },
   methods: {
   },
-  created(){
-    //Code starts here
+  beforeCreate(){
+    this.$ajax.get('/users/'.concat(sessionStorage.getItem("username")))
+    .then((response) => {
+      sessionStorage.setItem("userinfo", JSON.stringify(response.data))
+    })
+    .catch((error) =>{
+      console.log(error)
+    })
   }
 }
 </script>

@@ -18,9 +18,9 @@ export default {
   created(){
     this.$ajax.get('/login')
     .then((response) => {
-      localStorage.setItem("state", response.data.LoggedIn)
-      localStorage.setItem("username", response.data.CurrentUser)
-      if(localStorage.getItem("state")){
+      sessionStorage.setItem("state", response.data.LoggedIn)
+      sessionStorage.setItem("username", response.data.CurrentUser)
+      if(sessionStorage.getItem("state")){
         this.$router.push('/view')
       } else {
         this.$router.push('/login')

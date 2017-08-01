@@ -26,7 +26,7 @@ export default {
   name: 'logout',
   computed: {
     current_user(){
-      return localStorage.getItem("username")
+      return sessionStorage.getItem("username")
     }
   },
   methods: {

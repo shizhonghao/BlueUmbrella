@@ -27,7 +27,7 @@
     <el-row>
       <el-col :span="2" :offset="10">
         <div>
-          <el-button type="primary">注册</el-button>
+          <el-button type="primary" @click="register">注册</el-button>
         </div>
       </el-col>
       <el-col :span="2">
@@ -50,8 +50,33 @@ export default {
     }
   },
   methods: {
-    login_req() {
-      return true
+    register() {
+      if(this.username == "" || this.password == ""){
+        this.$message.error('请先输入用户名和密码')
+        //Will be overridden later
+      } else {
+        this.$ajax.post('/register', {
+          username: this.username,
+          password: this.password,
+          email: this.email
+        })
+        .then((response) => {
+          sessionStorage.setItem("state", true)
+          sessionStorage.setItem("username", response.data.CurrentUser)
+          this.$router.push('/view')
+        })
+        .catch((error) => {
+          if(error.response){
+            if(error.response.status == 500){
+              this.$message.error(error.response.data.message)
+            } else {
+              console.log(error)
+            }
+          } else {
+            console.log(error)
+          }
+        })
+      }
     }
   }
 }

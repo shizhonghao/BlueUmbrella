@@ -81,7 +81,7 @@ def register():
         SSUsers().add(req.get('username'), req.get('password'))
         if SSUsers().verify():
             login_user(new, remember=True)
-            return jsonify(Success=True, Token=get_token(new))
+            return jsonify(CurrentUser=current_user.username, Token=get_token(new))
         else:
             raise APIException("Internal Error", "Fail to create account, contact with admins", 500)
     
