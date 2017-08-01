@@ -33,7 +33,7 @@ export default {
     logout(){
       this.$ajax.get('/logout')
       .then( (response) => {
-        console.log(response.data)
+        sessionStorage.clear()
         this.$router.push('/login')
       })
     }

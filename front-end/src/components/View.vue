@@ -73,7 +73,7 @@ export default {
   },
   methods: {
   },
-  beforeCreate(){
+  created(){
     this.$ajax.get('/users/'.concat(sessionStorage.getItem("username")))
     .then((response) => {
       sessionStorage.setItem("userinfo", JSON.stringify(response.data))
@@ -81,6 +81,11 @@ export default {
     .catch((error) =>{
       console.log(error)
     })
+  },
+  beforeCreate(){
+    if(!(sessionStorage.getItem("state") && JSON.parse(sessionStorage.getItem("state")))){
+      this.$router.push('/login')
+    }
   }
 }
 </script>

@@ -6,21 +6,33 @@
     <el-row>
       <el-col :span="4" :offset="10">
         <div>
-          <el-input v-model="username" placeholder="Username"></el-input>
+          <el-input 
+          v-model="username" 
+          placeholder="Username"
+          required>
+          </el-input>
         </div>
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="4" :offset="10">
         <div>
-          <el-input v-model="password" placeholder="Password"></el-input>
+          <el-input 
+          v-model="password" 
+          placeholder="Password"
+          type="password"
+          required>
+          </el-input>
         </div>
       </el-col>
     </el-row>
       <el-row>
       <el-col :span="4" :offset="10">
         <div>
-          <el-input v-model="email" placeholder="Email address"></el-input>
+          <el-input 
+          v-model="email" 
+          placeholder="Email address">
+          </el-input>
         </div>
       </el-col>
     </el-row>

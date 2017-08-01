@@ -8,14 +8,23 @@
     <el-row>
       <el-col :span="4" :offset="10">
         <div>
-          <el-input v-model="username" placeholder="Username"></el-input>
+          <el-input 
+          v-model="username" 
+          placeholder="Username"
+          required>
+          </el-input>
         </div>
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="4" :offset="10">
         <div>
-          <el-input v-model="password" placeholder="Password"></el-input>
+          <el-input 
+          v-model="password" 
+          placeholder="Password"
+          type="password"
+          required>
+          </el-input>
         </div>
       </el-col>
     </el-row>
@@ -48,7 +57,7 @@ export default {
   methods: {
     login() {
       if(this.username == "" || this.password == ""){
-        $this.$message.error('请先输入用户名和密码')
+        this.$message.error('请先输入用户名和密码')
         //Will be overridden later
       } else {
         this.$ajax.post('/login', {
@@ -65,7 +74,7 @@ export default {
           // Need to be overridden
           if(error.response){
             if(error.response.status == 500){
-              $this.$message.error('用户名或密码不正确！')
+              this.$message.error('用户名或密码不正确！')
             } else {
               console.log(error)
             }

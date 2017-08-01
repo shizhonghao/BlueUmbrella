@@ -15,12 +15,13 @@ export default {
       status: false
     }
   },
-  created(){
+  beforeCreate(){
     this.$ajax.get('/login')
     .then((response) => {
+      console.log(response.data)
       sessionStorage.setItem("state", response.data.LoggedIn)
       sessionStorage.setItem("username", response.data.CurrentUser)
-      if(sessionStorage.getItem("state")){
+      if(JSON.parse(sessionStorage.getItem("state"))){
         this.$router.push('/view')
       } else {
         this.$router.push('/login')
