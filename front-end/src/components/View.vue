@@ -50,8 +50,6 @@ export default {
   name: 'view',
   data () {
     return {
-      username: this.$username,
-      password: ''
     }
   },
   computed:{

@@ -37,6 +37,9 @@ export default {
         this.$router.push('/login')
       })
     }
+  },
+  created(){
+    // Code should be here
   }
 }
 </script>
