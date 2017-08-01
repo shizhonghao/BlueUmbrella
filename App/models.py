@@ -89,7 +89,7 @@ class SSUsers():
         if self.get(username):
             return False
         user_info = dict()
-        user_info["enable"] = 0
+        user_info["enable"] = False
         user_info["method"] = method
         user_info["obfs"] = obfs
         user_info["protocol"] = protocol
