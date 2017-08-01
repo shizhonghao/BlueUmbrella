@@ -27,7 +27,7 @@
           border>
           <el-table-column
             prop="key"
-            width="180"
+            width="100"
             label="键">
           </el-table-column>
           <el-table-column
@@ -70,9 +70,9 @@ export default {
     }
   },
   methods: {
-    login_req() {
-      this.username = this.$username
-    }
+  },
+  created(){
+    //Code starts here
   }
 }
 </script>
