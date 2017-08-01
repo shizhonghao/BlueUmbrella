@@ -22,7 +22,7 @@
       <el-col :span="12" :offset="6">
         <el-table 
           :data="tableData" 
-          style="width:100% overflow:hidden"
+          style="width:100%;overflow:hidden;"
           show-header="false"
           border>
           <el-table-column

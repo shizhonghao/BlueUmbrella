@@ -18,19 +18,6 @@
         </div>
       </el-col>
     </el-row>
-    <!-- Row for datas (prototype)  -->
-    <el-row>
-      <el-col :span="6" :offset="4">
-        <div>
-          Username:
-        </div>
-      </el-col>
-      <el-col :span="6" :offset="2">
-        <div>
-          Ray
-        </div>
-      </el-col>
-    </el-row>
   </div>
 </template>
 
