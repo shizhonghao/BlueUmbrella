@@ -12,22 +12,34 @@
           当前用户是: {{ current_user }}
         </div>
       </el-col>
-      <el-col :span="2" :offset="6">
+      <el-col :span="1" :offset="7">
         <el-button @click="$router.push('/logout')" type="primary">登出</el-button>
       </el-col>
     </el-row>
     
     <!-- Row for datas (prototype)  -->
     <el-row>
-      <el-col :span="4" :offset="7">
-        <div>
-          Username:
-        </div>
-      </el-col>
-      <el-col :span="4" :offset="1">
-        <div>
-          Ray
-        </div>
+      <el-col :span="12" :offset="6">
+        <el-table 
+          :data="tableData" 
+          style="width:100% overflow:hidden"
+          show-header="false"
+          border>
+          <el-table-column
+            prop="key"
+            width="180"
+            label="键">
+          </el-table-column>
+          <el-table-column
+            prop="value"
+            width="180"
+            label="值">
+          </el-table-column>
+          <el-table-column
+            prop="description"
+            label="描述">
+          </el-table-column>
+        </el-table>
       </el-col>
     </el-row>
   </div>
@@ -43,8 +55,20 @@ export default {
     }
   },
   computed:{
-    current_user (){
+    current_user(){
       return localStorage.getItem("username")
+    },
+    tableData(){
+      return [{
+        key:"username",
+        value: "ray",
+        description: "您的用户名"
+      } , {
+        key:"ss_password",
+        value:"123",
+        description: "您的shadowsocks密码"
+      }
+      ]
     }
   },
   methods: {
