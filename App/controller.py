@@ -63,7 +63,7 @@ class SpecUser(Resource):
 			args['obfs'] = req['obfs']
 		if current_user.is_admin:
 			#Allow admin to enable or disable users
-			if 'enable' in req and isinstance(req['enable'], bool)):
+			if 'enable' in req and isinstance(req['enable'], bool):
 				args['enable'] = req['enable']
 				#PLACEHOLDER
 				#set the expire_date in the mongodb
