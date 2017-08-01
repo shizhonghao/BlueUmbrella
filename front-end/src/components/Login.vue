@@ -68,16 +68,19 @@ export default {
           // Logged in
           sessionStorage.setItem("state", true)
           sessionStorage.setItem("username", response.data.CurrentUser)
-          this.$router.push('/view')
+          this.$ajax.get('/users/'.concat(sessionStorage.getItem("username")))
+          .then((response) => {
+            sessionStorage.setItem("userinfo", JSON.stringify(response.data))
+            this.$router.push('/view')
+          })
+          .catch((error) =>{
+            console.log(error)
+          })
         })
         .catch((error) => {
           // Need to be overridden
-          if(error.response){
-            if(error.response.status == 500){
-              this.$message.error('用户名或密码不正确！')
-            } else {
-              console.log(error)
-            }
+          if(error.response.status == 500){
+            this.$message.error('用户名或密码不正确！')
           } else {
             console.log(error)
           }

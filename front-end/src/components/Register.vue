@@ -75,7 +75,14 @@ export default {
         .then((response) => {
           sessionStorage.setItem("state", true)
           sessionStorage.setItem("username", response.data.CurrentUser)
-          this.$router.push('/view')
+          this.$ajax.get('/users/'.concat(sessionStorage.getItem("username")))
+          .then((response) => {
+            sessionStorage.setItem("userinfo", JSON.stringify(response.data))
+            this.$router.push('/view')
+          })
+          .catch((error) =>{
+            console.log(error)
+          })
         })
         .catch((error) => {
           if(error.response){

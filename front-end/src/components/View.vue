@@ -79,37 +79,16 @@ export default {
     },
     port(){
       return JSON.parse(sessionStorage.getItem("userinfo")).port
-    },
-    tableData(){
-      return [{
-        key:"username",
-        value: "ray",
-        description: "您的用户名"
-      } , {
-        key:"ss_password",
-        value:"123",
-        description: "您的shadowsocks密码"
-      }
-      ]
     }
   },
   methods: {
-  },
-  created(){
-    this.$ajax.get('/users/'.concat(sessionStorage.getItem("username")))
-    .then((response) => {
-      sessionStorage.setItem("userinfo", JSON.stringify(response.data))
-    })
-    .catch((error) =>{
-      console.log(error)
-    })
   },
   beforeCreate(){
     if(!(sessionStorage.getItem("state") && JSON.parse(sessionStorage.getItem("state")))){
       this.$router.push('/login')
     }
   }
-}
+} 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
