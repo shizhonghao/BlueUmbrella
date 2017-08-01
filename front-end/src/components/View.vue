@@ -12,12 +12,12 @@
         </div>
       </el-col>-->
 
-      <el-col :span="4" :offset="7" >
+      <el-col :span="4" :offset="8" >
         <div class="key">
           用户:&nbsp;
         </div>
       </el-col>
-      <el-col :span="8" :offset="0" >
+      <el-col :span="4" :offset="0" >
         <div class="val">
           {{ current_user }}
         </div>
@@ -25,12 +25,12 @@
       <el-row>
       </el-row>
 
-      <el-col :span="4" :offset="7" >
+      <el-col :span="4" :offset="8" >
         <div class="key">
           ss密码:&nbsp;
         </div>
       </el-col>
-      <el-col :span="8" :offset="0" >
+      <el-col :span="4" :offset="0" >
         <div class="val">
           {{ ss_password }}
         </div>
@@ -38,12 +38,12 @@
       <el-row>
       </el-row>
 
-      <el-col :span="4" :offset="7" >
+      <el-col :span="4" :offset="8" >
         <div class="key">
           port:&nbsp;
         </div>
       </el-col>
-      <el-col :span="8" :offset="0" >
+      <el-col :span="4" :offset="0" >
         <div class="val">
           {{ port }}
         </div>
@@ -75,10 +75,10 @@ export default {
       return sessionStorage.getItem("username")
     },
     ss_password(){
-        return sessionStorage.getItem("ss_password")
+        return JSON.parse(sessionStorage.getItem("userinfo")).ss_password
     },
     port(){
-      return sessionStorage.getItem("port")
+      return JSON.parse(sessionStorage.getItem("userinfo")).port
     },
     tableData(){
       return [{
@@ -114,6 +114,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .item{
+  }
   .grid-content {
     border-radius: 4px;
     min-height: 36px;
