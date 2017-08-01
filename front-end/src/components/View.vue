@@ -3,52 +3,68 @@
     <!-- <el-row>
       <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row> -->
-    <el-row>
-    </el-row>
-    <!-- Navigation Row  -->
-    <el-row>
-      <el-col :span="6" :offset="4">
-        <div>
-          当前用户是: {{ current_user }}
+
+    <div class="item">
+
+      <!--<el-col v-for="key in users">
+        <div class="key">
+          {{ key }} ,{{ val }}:&nbsp;
+        </div>
+      </el-col>-->
+
+      <el-col :span="4" :offset="7" >
+        <div class="key">
+          用户:&nbsp;
         </div>
       </el-col>
-      <el-col :span="2" :offset="6">
+      <el-col :span="8" :offset="0" >
+        <div class="val">
+          {{ current_user }}
+        </div>
+      </el-col>
+      <el-row>
+      </el-row>
+
+      <el-col :span="4" :offset="7" >
+        <div class="key">
+          ss密码:&nbsp;
+        </div>
+      </el-col>
+      <el-col :span="8" :offset="0" >
+        <div class="val">
+          {{ ss_password }}
+        </div>
+      </el-col>
+      <el-row>
+      </el-row>
+
+      <el-col :span="4" :offset="7" >
+        <div class="key">
+          port:&nbsp;
+        </div>
+      </el-col>
+      <el-col :span="8" :offset="0" >
+        <div class="val">
+          {{ port }}
+        </div>
+      </el-col>
+      <el-row>
+      </el-row>
+
+
+      <el-col :span="4" :offset="10">
         <el-button @click="$router.push('/logout')" type="primary">登出</el-button>
       </el-col>
-    </el-row>
-    
-    <!-- Row for datas (prototype)  -->
-    <el-row>
-      <el-col :span="12" :offset="6">
-        <el-table 
-          :data="tableData" 
-          style="width:100%;overflow-x: hidden !important;"
-          :show-header="false"
-          :fit="false"
-          border>
-          <el-table-column
-            prop="key"
-            width="120"
-            label="键">
-          </el-table-column>
-          <el-table-column
-            prop="value"
-            width="200"
-            label="值">
-          </el-table-column>
-          <el-table-column
-            prop="description"
-            label="描述"
-            width="295">
-          </el-table-column>
-        </el-table>
-      </el-col>
-    </el-row>
+
+    </div>
   </div>
 </template>
 
 <script>
+
+  import ElCol from "element-ui/packages/col/src/col";
 export default {
+  components: {ElCol},
   name: 'view',
   data () {
     return {
@@ -57,6 +73,12 @@ export default {
   computed:{
     current_user(){
       return sessionStorage.getItem("username")
+    },
+    ss_password(){
+        return sessionStorage.getItem("ss_password")
+    },
+    port(){
+      return sessionStorage.getItem("port")
     },
     tableData(){
       return [{
@@ -98,6 +120,22 @@ export default {
   }
   .bg-purple {
     background: #d3dce6;
+  }
+  .key{
+    text-align:right;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: 600;
+    margin-top: 16px;
+    padding: 0;
+  }
+  .val{
+    text-align:left;
+    font-size: 1em;
+    /*font-style: italic;*/
+    /*font-weight: 100;*/
+    margin-top: 16px;
+    padding: 0;
   }
   .el-row {
     margin-bottom: 20px;
