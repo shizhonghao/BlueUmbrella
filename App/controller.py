@@ -70,14 +70,7 @@ class SpecUser(Resource):
 			if 'transfer_enable' in req:
 				args['transfer_enable'] = req['transfer_enable']
 		SSUsers().modify(username, args)
-		if SSUsers().verify():
-			return {"Success": True}
-		else:
-			return {"Status":"Error, contact the admin"}, 500
-			#need an error handler later
-	
-	@login_required
-	@admin_required
+		return {"Success": True}
 
 	@login_required
 	@admin_required

@@ -52,34 +52,19 @@ def singleton(cls, *args, **kw):
 @singleton
 class SSUsers():
     def __init__(self):
-        with open("/var/www/shadowsocksr/mudb.json", "r") as f:
-            self.data = json.load(f)
-        self.data = {line.pop("user"):line for line in map(change_keys, self.data)}
-
-    def verify(self):
-        #compare self.data with json data
-        with open("/var/www/shadowsocksr/mudb.json", "r") as f:
-            tmp = json.load(f)
-        tmp =  {line.pop("user"):line for line in map(change_keys, tmp)}
-        for k in tmp.keys():
-            if not k in self.data:
-                return False
-        for k in self.data.keys():
-            if not k in tmp:
-                return False
-            else:
-                for sub_k in self.data[k].keys():
-                    if self.data[k][sub_k] != tmp[k][sub_k]:
-                        return False
-        return True
+        pass
     
     def get_all(self):
-        return deepcopy(self.data)
+        with open("/var/www/shadowsocksr/mudb.json", "r") as f:
+            data = json.load(f)
+        data = {line.pop("user"):line for line in map(change_keys, data)}
+        return data
 
     def get(self, username):
-        if not self.data.get(username):
+        data = self.get_all()
+        if not data.get(username):
             return False
-        return self.data.get(username).copy()
+        return data.get(username)
 
     
     def add(self, username, password, method = 'aes-128-ctr', protocol = 'auth_aes128_md5', obfs = 'tls1.2_ticket_auth_compatible'):
@@ -98,7 +83,6 @@ class SSUsers():
         user_info["transfer_enable"] = 21474836480
         user_info["upward_transfer"] = 0
         user_info["downward_transfer"] = 0
-        self.data[username] = user_info.copy()
         change_keys_back(user_info)
         #then add username back
         user_info["user"]=username
@@ -112,10 +96,10 @@ class SSUsers():
     def modify(self, username, args):
         #args is a dict, try to update self.data[username] from args
         #args may or maynot contain all possible things (i.e. password, obfs, protocol)
-        if not username in self.data:
+        write_back = self.get(username)
+        if not write_back:
             return False
-        self.data[username].update(args)
-        write_back = self.data[username].copy()
+        write_back.update(args)
         change_keys_back(write_back)
         write_back["user"]=username
         with open("/var/www/shadowsocksr/mudb.json", "r") as f:
@@ -129,9 +113,8 @@ class SSUsers():
 
     def delete(self, username):
         #delete everything from mudb.json and self.data
-        if not username in self.data:
+        if not self.get(username):
             return False
-        del self.data[username]
         with open("/var/www/shadowsocksr/mudb.json", "r") as f:
             json_data = json.load(f)
         for index, line in enumerate(json_data):
