@@ -95,7 +95,7 @@ class SSUsers():
         user_info["protocol"] = protocol
         user_info["ss_password"] = password
         user_info["port"] = available_port
-        user_info["transfer_enable"] = 9007199254740992
+        user_info["transfer_enable"] = 21474836480
         user_info["upward_transfer"] = 0
         user_info["downward_transfer"] = 0
         self.data[username] = user_info.copy()
