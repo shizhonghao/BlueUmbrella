@@ -1,6 +1,6 @@
 __pycache__/
 *.py[cod]
-App/__pycache__/
+App/__pycache__/*
 *$py.class
 .gitignore
 front-end/node_modules/
