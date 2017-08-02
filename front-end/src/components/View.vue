@@ -182,6 +182,7 @@
         <el-tab-pane label="SSR二维码" name="second">
           <el-col>
             也可通过扫描二维码录入信息
+            {{ ssr_link }}
           </el-col>
           <vue-qr :bgSrc='src' :logoSrc="src2" text="这是一个测试界面" height="200" width="200"></vue-qr>
           <el-col :span="4" :offset="10">
@@ -197,7 +198,6 @@
 </template>
 
 <script>
-
   function dataflow_convert(dat){
     if(dat<1024)
     {
@@ -218,9 +218,9 @@
       var x = dat/1073741824
       return x.toFixed(2)+"GB"
     }
-
     return dat
   }
+
   import VueQr from 'vue-qr'
   import ElCol from "element-ui/packages/col/src/col";
   export default {
@@ -270,6 +270,15 @@
             - JSON.parse(sessionStorage.getItem("userinfo")).upward_transfer
             - JSON.parse(sessionStorage.getItem("userinfo")).downward_transfer
         return dataflow_convert(remain)
+      },
+      ssr_link(){
+        var URLSafeBase64 = require('urlsafe-base64');
+        var dict = JSON.parse(sessionStorage.getItem("userinfo"))
+        //var buf = new Buffer(dict.password)
+          var link = "tbufoundation.tk:" + dict.port + ":" + dict.protocol.replace("_compatible", "")
+            + ":" + dict.method + ":" + dict.obfs.replace("_compatible", "") + ":"
+            //+ buf
+          return "ssr://" + link
       },
       tableData(){
         return [{
