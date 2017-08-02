@@ -11,7 +11,7 @@
           {{ key }} ,{{ val }}:&nbsp;
         </div>
       </el-col>-->
-      <el-tabs type="border-card" >
+      <el-tabs v-model="activeName" type="border-card" >
         <el-tab-pane label="用户信息" name="first">
 
           <el-row type="flex" class="row-bg">
@@ -132,6 +132,7 @@
     name: 'view',
     data () {
       return {
+        activeName: "first"
       }
     },
     computed:{
