@@ -96,20 +96,17 @@ class SSUsers():
     def modify(self, username, args):
         #args is a dict, try to update self.data[username] from args
         #args may or maynot contain all possible things (i.e. password, obfs, protocol)
-        write_back = self.get(username)
-        if not write_back:
+        data = self.get_all()
+        if not username in data:
             return False
-        write_back.update(args)
-        change_keys_back(write_back)
-        write_back["user"]=username
-        with open("/var/www/shadowsocksr/mudb.json", "r") as f:
-            json_data = json.load(f)
-        for index, line in enumerate(json_data):
-            if line["user"] == username:
-                json_data[index]=write_back
-                break
+        data[username].update(args)
+        write_back = list()
+        for k, v in data.items():
+            change_keys_back(v)
+            v["user"]=k
+            write_back.append(v)
         with open("/var/www/shadowsocksr/mudb.json", "w") as f:
-            json.dump(json_data,f,sort_keys = True,indent = 4)
+            json.dump(write_back,f,sort_keys = True,indent = 4)
 
     def delete(self, username):
         #delete everything from mudb.json and self.data
