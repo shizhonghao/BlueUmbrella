@@ -184,7 +184,7 @@
             也可通过扫描二维码录入信息
             {{ ssr_link }}
           </el-col>
-          <vue-qr :bgSrc='src' :logoSrc="src2" text="这是一个测试界面" height="200" width="200"></vue-qr>
+          <vue-qr :text="text" size="400"></vue-qr>
           <el-col :span="4" :offset="10">
             <el-button @click="$router.push('/logout')" type="primary">登出</el-button>
           </el-col>
@@ -228,6 +228,7 @@
     name: 'view',
     data () {
       return {
+        text:"ssr",
         activeName: "first"
       }
     },
@@ -278,7 +279,8 @@
           var link = "tbufoundation.tk:" + dict.port + ":" + dict.protocol.replace("_compatible", "")
             + ":" + dict.method + ":" + dict.obfs.replace("_compatible", "") + ":"
             //+ buf
-          return "ssr://" + link
+        this.text = "ssr://" + link
+        return "ssr://" + link
       },
       tableData(){
         return [{
