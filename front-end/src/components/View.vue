@@ -237,7 +237,7 @@
         return sessionStorage.getItem("username")
       },
       e_mail(){
-        return JSON.parse(sessionStorage.getItem("userinfo")).e_mail
+        return JSON.parse(sessionStorage.getItem("userinfo")).email
       },
       ss_password(){
         return JSON.parse(sessionStorage.getItem("userinfo")).ss_password
