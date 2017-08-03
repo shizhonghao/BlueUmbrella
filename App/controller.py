@@ -42,6 +42,8 @@ class SpecUser(Resource):
 	def patch(self, username):
 		if (not current_user.is_admin) and current_user.username != username:
 			return current_app.login_manager.unauthorized()
+		if not SSUsers().get(username):
+			return {"Status":"Error, no such user"}, 500
 		req = request.get_json()
 		args = dict()
 		#A request parser, to avoid request that is not allowed
@@ -75,6 +77,8 @@ class SpecUser(Resource):
 	@login_required
 	@admin_required
 	def delete(self, username):
+		if not SSUsers().get(username):
+			return {"Status":"Error, no such user"}, 500
 		SSUsers().delete(username)
 		User.objects(username=username).first().delete()
 		return {"Success": True}

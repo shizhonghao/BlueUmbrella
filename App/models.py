@@ -97,8 +97,6 @@ class SSUsers():
         #args is a dict, try to update self.data[username] from args
         #args may or maynot contain all possible things (i.e. password, obfs, protocol)
         data = self.get_all()
-        if not username in data:
-            return False
         data[username].update(args)
         write_back = list()
         for k, v in data.items():
@@ -110,8 +108,6 @@ class SSUsers():
 
     def delete(self, username):
         #delete everything from mudb.json and self.data
-        if not self.get(username):
-            return False
         with open("/var/www/shadowsocksr/mudb.json", "r") as f:
             json_data = json.load(f)
         for index, line in enumerate(json_data):
