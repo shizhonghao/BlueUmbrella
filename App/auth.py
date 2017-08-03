@@ -79,9 +79,8 @@ def register():
                     is_admin = False)
         new.save()
         SSUsers().add(req.get('username'), req.get('password'))
-        if SSUsers().verify():
-            login_user(new, remember=True)
-            return jsonify(CurrentUser=current_user.username, Token=get_token(new))
+        login_user(new, remember=True)
+        return jsonify(CurrentUser=current_user.username, Token=get_token(new))
     
 
 
