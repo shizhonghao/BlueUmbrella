@@ -17,7 +17,6 @@ export default {
   created(){
     this.$ajax.get('/login')
     .then((response) => {
-      console.log(response.data)
       sessionStorage.setItem("state", response.data.LoggedIn)
       sessionStorage.setItem("username", response.data.CurrentUser)
       if(JSON.parse(sessionStorage.getItem("state"))){
