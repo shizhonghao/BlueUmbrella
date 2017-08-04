@@ -30,3 +30,9 @@
 * ~~ Implement the controller ~~
 
 * Start the implementation of front-end
+
+### Added Aug 4
+
+* Feature: click a button to show the shadowsocksr password
+
+* Feature: add tips for views. (Ref: el-tooltips in Elements)

@@ -84,3 +84,11 @@ Basically, we've accomplished the development of the back-end.
 * Note: Adding vue supporting into hexo-theme-next:
     * themes/next/layout/_layout.swig add
     `<script type="text/javascript" src="{{ url_for(theme.js) }}/src/vue.js"></script>`
+
+### Apr 4
+
+* Working on front-end, for more details check our github history
+
+* Apparently the working on Vue is not as smooth as on flask, but at least now the only thing remaining for normal users is editing their account info. We are planning to put the whole system online in few days.
+
+* Tmr I'm gonna fix the bug of error handler, the different view of `View` in Firefox and Chrome, the base64 and QRCode support. At the very last I'm gonna try to merge it into our hexo page.
