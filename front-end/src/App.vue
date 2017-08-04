@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <img src="./assets/tbu.jpg">
     <!-- <transition name="fade"> -->
       <router-view></router-view>
     <!-- </transition> -->
@@ -15,7 +15,7 @@ export default {
       status: false
     }
   },
-  beforeCreate(){
+  created(){
     this.$ajax.get('/login')
     .then((response) => {
       console.log(response.data)

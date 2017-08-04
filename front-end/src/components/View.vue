@@ -285,7 +285,7 @@
     },
     methods: {
     },
-    beforeCreate(){
+    created(){
       if(!(sessionStorage.getItem("state") && JSON.parse(sessionStorage.getItem("state")))){
         this.$router.push('/login')
       } else {
