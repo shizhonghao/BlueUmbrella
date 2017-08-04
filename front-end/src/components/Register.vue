@@ -80,7 +80,7 @@ export default {
         .catch((error) => {
           if(error.response){
             if(error.response.status == 500){
-              this.$message.error(error.response.data.message)
+              this.$message.error("用户名已存在！")
             } else {
               console.log(error)
             }

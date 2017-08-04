@@ -71,7 +71,6 @@ export default {
           this.$router.push('/view')
         })
         .catch((error) => {
-          // Need to be overridden
           if(error.response.status == 500){
             this.$message.error('用户名或密码不正确！')
           } else {

@@ -14,7 +14,7 @@ Vue.prototype.$ajax = axios
 // $state stands for logging in state
 Vue.config.productionTip = false
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'http://api.tbufoundation.tk'
+axios.defaults.baseURL = 'https://api.tbufoundation.tk'
 
 
 /* eslint-disable no-new */
