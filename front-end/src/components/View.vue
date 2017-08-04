@@ -222,10 +222,9 @@
   }
 
   import VueQr from 'vue-qr'
-  import ElCol from "element-ui/packages/col/src/col"
   import URLSafeBase64 from 'urlsafe-base64'
   export default {
-    components: {ElCol,VueQr},
+    components: {VueQr},
     name: 'view',
     data () {
       return {
