@@ -292,7 +292,6 @@
         this.$ajax.get('/users/'.concat(sessionStorage.getItem("username")))
         .then((response) => {
           this.userinfo = response.data
-          console.log(this.userinfo)
         })
         .catch((error) =>{
           console.log(error)
