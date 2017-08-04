@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img src="./assets/TBU.jpg">
     <!-- <transition name="fade"> -->
       <router-view></router-view>
     <!-- </transition> -->
