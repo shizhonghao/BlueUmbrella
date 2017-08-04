@@ -68,36 +68,42 @@
 </template>
 
 <script>
-export default {
-  name: 'edit',
-  data () {
-    return {
-      form: {
-        email: '',
-        ss_password:'',
-        password:'',
-        method: '',
-        protocol: '',
-        obfs: '',
+  export default {
+    name: 'edit',
+    data () {
+      return {
+        form: {
+          email: '',
+          ss_password:'',
+          password:'',
+          method: '',
+          protocol: '',
+          obfs: '',
+        }
+      }
+    },
+    methods: {
+      login_req() {
+        return true
+      },
+      onSubmit() {
+        console.log('submit!');
+      }
+    },
+    created(){
+      if(!(sessionStorage.getItem("state") && JSON.parse(sessionStorage.getItem("state")))){
+        this.$router.push('/login')
+      } else {
+        this.$ajax.get('/users/'.concat(sessionStorage.getItem("username")))
+        .then((response) => {
+          this.form = response.data
+        })
+        .catch((error) =>{
+          console.log(error)
+        })
       }
     }
-  },
-  methods: {
-    login_req() {
-      return true
-    },
-    onSubmit() {
-      console.log('submit!');
-    }
-  },
-  created(){
-    this.form.email = JSON.parse(sessionStorage.getItem("userinfo")).email
-    this.form.ss_password = JSON.parse(sessionStorage.getItem("userinfo")).ss_password
-    this.form.obfs = JSON.parse(sessionStorage.getItem("userinfo")).obfs
-    this.form.method = JSON.parse(sessionStorage.getItem("userinfo")).method
-    this.form.protocol = JSON.parse(sessionStorage.getItem("userinfo")).protocol
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

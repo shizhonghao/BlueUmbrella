@@ -15,7 +15,7 @@
         <el-tab-pane label="用户信息" name="first">
 
           <el-row type="flex" class="row-bg">
-            <el-col :span="4" offset="4">
+            <el-col :span="6" :offset="2">
               <div class="key">
                 用户:&nbsp;
               </div>
@@ -28,34 +28,34 @@
           </el-row>
 
           <el-row type="flex" class="row-bg">
-            <el-col :span="4" offset="4">
+            <el-col :span="6" :offset="2">
               <div class="key">
                 邮箱:&nbsp;
               </div>
             </el-col>
             <el-col :span="4">
               <div class="val">
-                {{ e_mail }}
+                {{ userinfo.email }}
               </div>
             </el-col>
           </el-row>
 
           <el-row type="flex" class="row-bg">
-            <el-col :span="4" offset="4">
+            <el-col :span="6" :offset="2">
               <div class="key">
                 ss密码:&nbsp;
               </div>
             </el-col>
             <el-col :span="4">
               <div class="val">
-                {{ ss_password }}
+                {{ userinfo.ss_password }}
               </div>
             </el-col>
           </el-row>
 
 
           <el-row type="flex" class="row-bg">
-            <el-col :span="4" offset="4">
+            <el-col :span="6" :offset="2">
               <div class="key">
                 可用性:&nbsp;
               </div>
@@ -70,42 +70,42 @@
 
           <el-row type="flex" class="row-bg">
 
-            <el-col :span="4" offset="4">
+            <el-col :span="6" :offset="2">
               <div class="key">
                 协议:&nbsp;
               </div>
             </el-col>
             <el-col :span="4">
               <div class="val">
-                {{ protocol }}
+                {{ userinfo.protocol }}
               </div>
             </el-col>
           </el-row>
 
 
           <el-row type="flex" class="row-bg">
-            <el-col :span="4" offset="4">
+            <el-col :span="6" :offset="2">
               <div class="key">
                 加密:&nbsp;
               </div>
             </el-col>
             <el-col :span="4">
               <div class="val">
-                {{ method }}
+                {{ userinfo.method }}
               </div>
             </el-col>
           </el-row>
 
 
           <el-row type="flex" class="row-bg">
-            <el-col :span="4" offset="4">
+            <el-col :span="6" :offset="2">
               <div class="key">
                 混淆:&nbsp;
               </div>
             </el-col>
             <el-col :span="4">
               <div class="val">
-                {{ obfs }}
+                {{ userinfo.obfs }}
               </div>
             </el-col>
             <el-row>
@@ -113,7 +113,7 @@
           </el-row>
 
           <el-row type="flex" class="row-bg">
-            <el-col :span="4" offset="4">
+            <el-col :span="6" :offset="2">
               <div class="key">
                 上传流量:&nbsp;
               </div>
@@ -128,7 +128,7 @@
           </el-row>
 
           <el-row type="flex" class="row-bg">
-            <el-col :span="4" offset="4">
+            <el-col :span="6" :offset="2">
               <div class="key">
                 下载流量:&nbsp;
               </div>
@@ -143,7 +143,7 @@
           </el-row>
 
           <el-row type="flex" class="row-bg">
-            <el-col :span="4" offset="4">
+            <el-col :span="6" :offset="2">
               <div class="key">
                 总流量:&nbsp;
               </div>
@@ -158,7 +158,7 @@
           </el-row>
 
           <el-row type="flex" class="row-bg">
-            <el-col :span="4" offset="4">
+            <el-col :span="6" :offset="2">
               <div class="key">
                 剩余流量:&nbsp;
               </div>
@@ -222,77 +222,66 @@
   }
 
   import VueQr from 'vue-qr'
-  import ElCol from "element-ui/packages/col/src/col";
+  import ElCol from "element-ui/packages/col/src/col"
+  import URLSafeBase64 from 'urlsafe-base64'
   export default {
     components: {ElCol,VueQr},
     name: 'view',
     data () {
       return {
         text:"ssr",
-        activeName: "first"
+        activeName: "first",
+        userinfo: {
+          email: "",
+          ss_password: "",
+          port: 0,
+          method : "",
+          protocol: "",
+          obfs: "",
+          enable: "",
+          upward_transfer: 0,
+          downward_transfer: 0,
+          transfer_enable: 0
+        }
       }
     },
     computed:{
       current_user(){
         return sessionStorage.getItem("username")
       },
-      e_mail(){
-        return JSON.parse(sessionStorage.getItem("userinfo")).email
-      },
-      ss_password(){
-        return JSON.parse(sessionStorage.getItem("userinfo")).ss_password
-      },
-      port(){
-        return JSON.parse(sessionStorage.getItem("userinfo")).port
-      },
-      method(){
-        return JSON.parse(sessionStorage.getItem("userinfo")).method
-      },
-      protocol(){
-        return JSON.parse(sessionStorage.getItem("userinfo")).protocol
-      },
-      obfs(){
-        return JSON.parse(sessionStorage.getItem("userinfo")).obfs
-      },
       enable(){
-        return JSON.parse(sessionStorage.getItem("userinfo")).enable
+        if(this.userinfo.enable){
+          return "可用"
+        } else {
+          return "不可用"
+        }
+
       },
       upward_transfer(){
-        return dataflow_convert(JSON.parse(sessionStorage.getItem("userinfo")).upward_transfer)
+        return dataflow_convert(this.userinfo.upward_transfer)
       },
       downward_transfer(){
-        return dataflow_convert(JSON.parse(sessionStorage.getItem("userinfo")).downward_transfer)
+        return dataflow_convert(this.userinfo.downward_transfer)
       },
       transfer_enable(){
-        return dataflow_convert(JSON.parse(sessionStorage.getItem("userinfo")).transfer_enable)
+        return dataflow_convert(this.userinfo.transfer_enable)
       },
       transfer_remain(){
-          var remain = JSON.parse(sessionStorage.getItem("userinfo")).transfer_enable
-            - JSON.parse(sessionStorage.getItem("userinfo")).upward_transfer
-            - JSON.parse(sessionStorage.getItem("userinfo")).downward_transfer
+          var remain = this.userinfo.transfer_enable
+            - this.userinfo.upward_transfer
+            - this.userinfo.downward_transfer
         return dataflow_convert(remain)
       },
       ssr_link(){
-        var URLSafeBase64 = require('urlsafe-base64');
-        var dict = JSON.parse(sessionStorage.getItem("userinfo"))
-        //var buf = new Buffer(dict.password)
-          var link = "tbufoundation.tk:" + dict.port + ":" + dict.protocol.replace("_compatible", "")
-            + ":" + dict.method + ":" + dict.obfs.replace("_compatible", "") + ":"
-            //+ buf
-        this.text = "ssr://" + link
+
+        var dict = this.userinfo
+        var encoded_password = URLSafeBase64.encode(Buffer(dict.ss_password))
+        var link = "172.104.106.82:" + dict.port + ":" + dict.protocol.replace("_compatible", "")
+            + ":" + dict.method + ":" + dict.obfs.replace("_compatible", "") + ":" + encoded_password
+        var encoded_link = URLSafeBase64.encode(Buffer(link))
+        encoded_link.replace('/=/g', '')
+        this.text = "ssr://" + encoded_link
         return "ssr://" + link
-      },
-      tableData(){
-        return [{
-          key:"username",
-          value: "ray",
-          description: "您的用户名"
-        } , {
-          key:"ss_password",
-          value:"123",
-          description: "您的shadowsocks密码"
-        }
-        ]
       }
     },
     methods: {
@@ -300,6 +289,15 @@
     beforeCreate(){
       if(!(sessionStorage.getItem("state") && JSON.parse(sessionStorage.getItem("state")))){
         this.$router.push('/login')
+      } else {
+        this.$ajax.get('/users/'.concat(sessionStorage.getItem("username")))
+        .then((response) => {
+          this.userinfo = response.data
+          console.log(this.userinfo)
+        })
+        .catch((error) =>{
+          console.log(error)
+        })
       }
     }
   }

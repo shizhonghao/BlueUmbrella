@@ -68,14 +68,7 @@ export default {
           // Logged in
           sessionStorage.setItem("state", true)
           sessionStorage.setItem("username", response.data.CurrentUser)
-          this.$ajax.get('/users/'.concat(sessionStorage.getItem("username")))
-          .then((response) => {
-            sessionStorage.setItem("userinfo", JSON.stringify(response.data))
-            this.$router.push('/view')
-          })
-          .catch((error) =>{
-            console.log(error)
-          })
+          this.$router.push('/view')
         })
         .catch((error) => {
           // Need to be overridden
