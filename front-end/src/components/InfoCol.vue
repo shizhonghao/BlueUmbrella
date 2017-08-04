@@ -1,13 +1,14 @@
 <template>
     <el-row type="flex" class="row-bg">
-        <el-col :span="6" :offset="2">
+        <el-col :span="keyspan" :offset="offset">
             <div class="key">
-                {{ key }}
+                {{ keyword }}
             </div>
         </el-col>
-        <el-col :span="4">
+        <el-col :span="valuespan">
             <div class="val">
                 {{ value }}
+                <slot></slot>
             </div>
         </el-col>
     </el-row>
@@ -15,11 +16,24 @@
 
 <script>
 export default {
-    name: "InfoCol",
-    data () {
-
+    name: "infoCol",
+    props: {
+      keyword : String,
+      value: String,
+      description: String,
+      keyspan: {
+        type: Number,
+        default: 6
+      },
+      valuespan:{
+        type: Number,
+        default: 4
+      },
+      offset: {
+        type: Number,
+        default: 2
+      }
     }
-
 }
 </script>
 

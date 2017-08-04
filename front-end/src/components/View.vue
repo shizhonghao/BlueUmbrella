@@ -14,163 +14,60 @@
       <el-tabs v-model="activeName" type="border-card" >
         <el-tab-pane label="用户信息" name="first">
 
-          <el-row type="flex" class="row-bg">
-            <el-col :span="6" :offset="2">
-              <div class="key">
-                用户:&nbsp;
-              </div>
-            </el-col>
-            <el-col :span="4">
-              <div class="val">
-                {{ current_user }}
-              </div>
-            </el-col>
-          </el-row>
+          <infoCol 
+          keyword="用户: "
+          :value="current_user">
+          </infoCol>
 
-          <el-row type="flex" class="row-bg">
-            <el-col :span="6" :offset="2">
-              <div class="key">
-                邮箱:&nbsp;
-              </div>
-            </el-col>
-            <el-col :span="4">
-              <div class="val">
-                {{ userinfo.email }}
-              </div>
-            </el-col>
-          </el-row>
+          <infoCol
+          keyword="邮箱: "
+          :value="userinfo.email">
+          </infoCol>
 
-          <el-row type="flex" class="row-bg">
-            <el-col :span="6" :offset="2">
-              <div class="key">
-                ss密码:&nbsp;
-              </div>
-            </el-col>
-            <el-col :span="4">
-              <div class="val">
-                {{ userinfo.ss_password }}
-              </div>
-            </el-col>
-          </el-row>
+          <infoCol 
+          keyword="ss密码: "
+          :value="userinfo.ss_password">
+          </infoCol>
 
+          <infoCol
+          keyword="可用性: "
+          :value="enable">
+          </infoCol>
 
-          <el-row type="flex" class="row-bg">
-            <el-col :span="6" :offset="2">
-              <div class="key">
-                可用性:&nbsp;
-              </div>
-            </el-col>
-            <el-col :span="4">
-              <div class="val">
-                {{ enable }}
-              </div>
-            </el-col>
-          </el-row>
+          <infoCol 
+          keyword="协议: "
+          :value="userinfo.protocol">
+          </infoCol>
 
+          <infoCol 
+          keyword="加密: "
+          :value="userinfo.method">
+          </infoCol>
 
-          <el-row type="flex" class="row-bg">
+          <infoCol 
+          keyword="混淆: "
+          :value="userinfo.obfs">
+          </infoCol>
 
-            <el-col :span="6" :offset="2">
-              <div class="key">
-                协议:&nbsp;
-              </div>
-            </el-col>
-            <el-col :span="4">
-              <div class="val">
-                {{ userinfo.protocol }}
-              </div>
-            </el-col>
-          </el-row>
+          <infoCol 
+          keyword="上传流量: "
+          :value="upward_transfer">
+          </infoCol>
 
+          <infoCol 
+          keyword="下载流量: "
+          :value="downward_transfer">
+          </infoCol>
 
-          <el-row type="flex" class="row-bg">
-            <el-col :span="6" :offset="2">
-              <div class="key">
-                加密:&nbsp;
-              </div>
-            </el-col>
-            <el-col :span="4">
-              <div class="val">
-                {{ userinfo.method }}
-              </div>
-            </el-col>
-          </el-row>
+          <infoCol 
+          keyword="总流量: "
+          :value="transfer_enable">
+          </infoCol>
 
-
-          <el-row type="flex" class="row-bg">
-            <el-col :span="6" :offset="2">
-              <div class="key">
-                混淆:&nbsp;
-              </div>
-            </el-col>
-            <el-col :span="4">
-              <div class="val">
-                {{ userinfo.obfs }}
-              </div>
-            </el-col>
-            <el-row>
-            </el-row>
-          </el-row>
-
-          <el-row type="flex" class="row-bg">
-            <el-col :span="6" :offset="2">
-              <div class="key">
-                上传流量:&nbsp;
-              </div>
-            </el-col>
-            <el-col :span="4">
-              <div class="val">
-                {{ upward_transfer }}
-              </div>
-            </el-col>
-            <el-row>
-            </el-row>
-          </el-row>
-
-          <el-row type="flex" class="row-bg">
-            <el-col :span="6" :offset="2">
-              <div class="key">
-                下载流量:&nbsp;
-              </div>
-            </el-col>
-            <el-col :span="4">
-              <div class="val">
-                {{ downward_transfer }}
-              </div>
-            </el-col>
-            <el-row>
-            </el-row>
-          </el-row>
-
-          <el-row type="flex" class="row-bg">
-            <el-col :span="6" :offset="2">
-              <div class="key">
-                总流量:&nbsp;
-              </div>
-            </el-col>
-            <el-col :span="4">
-              <div class="val">
-                {{ transfer_enable }}
-              </div>
-            </el-col>
-            <el-row>
-            </el-row>
-          </el-row>
-
-          <el-row type="flex" class="row-bg">
-            <el-col :span="6" :offset="2">
-              <div class="key">
-                剩余流量:&nbsp;
-              </div>
-            </el-col>
-            <el-col :span="4">
-              <div class="val">
-                {{ transfer_remain }}
-              </div>
-            </el-col>
-            <el-row>
-            </el-row>
-          </el-row>
+          <infoCol 
+          keyword="剩余流量: "
+          :value="transfer_remain">
+          </infoCol>
 
           <el-col :span="4" :offset="10">
             <el-button @click="$router.push('/logout')" type="primary">登出</el-button>
@@ -223,8 +120,9 @@
 
   import VueQr from 'vue-qr'
   import URLSafeBase64 from 'urlsafe-base64'
+  import infoCol from './InfoCol.vue'
   export default {
-    components: {VueQr},
+    components: {VueQr, infoCol},
     name: 'view',
     data () {
       return {
@@ -241,6 +139,9 @@
           upward_transfer: 0,
           downward_transfer: 0,
           transfer_enable: 0
+        },
+        keytable: {
+          test: "Test"
         }
       }
     },
