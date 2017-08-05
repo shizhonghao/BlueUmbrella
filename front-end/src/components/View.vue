@@ -24,6 +24,11 @@
           :value="userinfo.email">
           </infoCol>
 
+          <infoCol
+          keyword="端口: "
+          :value="userinfo.port">
+          </infoCol>
+
           <infoCol 
           keyword="ss密码: "
           :value="userinfo.ss_password">
