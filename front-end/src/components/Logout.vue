@@ -3,21 +3,23 @@
     <!-- <el-row>
       <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row> -->
-    <el-row>
-    </el-row>
-    <!-- Navigate Row  -->
-    <el-row>
-      <el-col :span="6" :offset="4">
-        <div>
-          当前用户是: {{ current_user }}
-        </div>
-      </el-col>
-      <el-col :span="6" :offset="6">
-        <div>
-          <el-button @click="logout" type="primary">Logout</el-button>
-        </div>
-      </el-col>
-    </el-row>
+    <el-card class="box-card">
+      <el-row>
+      </el-row>
+      <!-- Navigate Row  -->
+      <el-row>
+        <el-col :span="6" :offset="4">
+          <div>
+            当前用户是: {{ current_user }}
+          </div>
+        </el-col>
+        <el-col :span="6" :offset="6">
+          <div>
+            <el-button @click="logout" type="primary">Logout</el-button>
+          </div>
+        </el-col>
+      </el-row>
+    </el-card>
   </div>
 </template>
 
@@ -62,5 +64,9 @@ export default {
   .row-bg {
     padding: 10px 0;
     background-color: #f9fafc;
+  }
+  .box-card {
+    margin: auto;
+    width: 50%;
   }
 </style>

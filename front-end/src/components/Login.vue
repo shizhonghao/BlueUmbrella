@@ -3,45 +3,48 @@
     <!-- <el-row>
       <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row> -->
-    <el-row>
-    </el-row>
-    <el-row>
-      <el-col :span="4" :offset="10">
-        <div>
-          <el-input 
-          v-model="username" 
-          placeholder="Username"
-          required>
-          </el-input>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="4" :offset="10">
-        <div>
-          <el-input 
-          v-model="password" 
-          placeholder="Password"
-          type="password"
-          required>
-          </el-input>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row>
-    </el-row>
-    <el-row>
-      <el-col :span="2" :offset="10">
-        <div>
-          <el-button type="primary" @click="$router.push('/register')">注册</el-button>
-        </div>
-      </el-col>
-      <el-col :span="2">
-        <div>
-          <el-button type="primary" @click="login">登录</el-button>
-        </div>
-      </el-col>
-    </el-row>
+    <el-card class="box-card">
+      <el-row>
+      </el-row>
+      <el-row>
+        <el-col :span="10" :offset="7">
+          <div>
+            <el-input
+            v-model="username"
+            placeholder="Username"
+            required>
+            </el-input>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="10" :offset="7">
+          <div>
+            <el-input
+            v-model="password"
+            placeholder="Password"
+            type="password"
+            required>
+            </el-input>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+      </el-row>
+      <el-row>
+        <el-col :span="2" :offset="7">
+          <div>
+            <el-button type="primary" @click="$router.push('/register')">注册</el-button>
+          </div>
+        </el-col>
+        <el-col :span="2" :offset="4">
+          <div>
+            <el-button type="primary" @click="login">登录</el-button>
+          </div>
+        </el-col>
+      </el-row>
+
+    </el-card>
   </div>
 </template>
 
@@ -104,5 +107,9 @@ export default {
   .row-bg {
     padding: 10px 0;
     background-color: #f9fafc;
+  }
+  .box-card {
+    margin: auto;
+    width: 360px;
   }
 </style>
