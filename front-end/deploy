@@ -19,6 +19,7 @@ template = Template(
 title:
 date: $date
 --- 
+
 {% raw %}
 <div id=app></div>
 $css
