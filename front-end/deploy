@@ -1,0 +1,35 @@
+#!/bin/python3
+from bs4 import BeautifulSoup as soup
+import os
+from subprocess import call
+from string import Template
+from datetime import datetime
+
+# Here, the current working dictionary must be ~/BlueUmbrella/front-end
+# call(['npm','run','build'])
+# call(['rm', '-r', '/var/www/hexo/source/src'])
+# call(['cp', '-r', 'dist/src', '/var/www/hexo/source/src'])
+
+#parse the html file and generate index.md
+with open('dist/index.html') as f:
+    s = soup(f.read(),"html.parser")
+
+template = Template(
+'''--- 
+title:
+date: $date
+--- 
+{% raw %}
+<div id=app></div>
+$css
+$manifest
+$vendor
+$app
+{% endraw %}''')
+now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+csslink = str(s.link)
+scripts = [str(i) for i in s.find_all("script")]
+content = template.substitute(date=now, css=csslink, 
+                manifest=scripts[0], vendor=scripts[1], app=scripts[2])
+with open('dist/index.md', 'w') as f:
+    f.write(content)
