@@ -26,7 +26,7 @@
 
           <infoCol
           keyword="端口: "
-          :value="userinfo.port">
+          :value="userinfo.port.toString()">
           </infoCol>
 
           <infoCol 
@@ -86,7 +86,7 @@
             也可通过扫描二维码录入信息
             {{ ssr_link }}
           </el-col>
-          <vue-qr :text="text" size="400"></vue-qr>
+          <vue-qr :text="text" :logoSrc="logo" size="400" :logoScale="0.4"></vue-qr>
           <el-col :span="4" :offset="10">
             <el-button @click="$router.push('/logout')" type="primary">登出</el-button>
           </el-col>
@@ -120,7 +120,7 @@
       var x = dat/1073741824
       return x.toFixed(2)+"GB"
     }
-    return dat
+    return dat.toString()
   }
 
   import VueQr from 'vue-qr'
@@ -133,6 +133,7 @@
       return {
         text:"ssr",
         activeName: "first",
+        logo: require('@/assets/TBU.jpg'),
         userinfo: {
           email: "",
           ss_password: "",

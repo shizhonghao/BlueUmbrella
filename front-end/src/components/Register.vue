@@ -1,5 +1,5 @@
 <template>
-  <div class="register">
+  <div class="register" @keyup.enter="register">
     <!-- <el-row>
       <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row> -->
@@ -59,7 +59,7 @@
             <el-button type="primary" @click="register">注册</el-button>
           </div>
         </el-col>
-        <el-col :span="2":offset="4">
+        <el-col :span="2" :offset="4">
           <div>
             <el-button type="primary" @click="$router.push('/login')">返回</el-button>
           </div>
