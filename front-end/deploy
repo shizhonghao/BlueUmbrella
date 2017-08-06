@@ -13,10 +13,10 @@ with open('dist/index.html') as f:
     s = soup(f.read(),"html.parser")
 
 template = Template(
-'''--- 
-title:
+'''---
+title: 
 date: $date
---- 
+---
 
 {% raw %}
 <div id=app></div>
