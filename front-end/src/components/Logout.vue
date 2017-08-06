@@ -39,6 +39,11 @@ export default {
         this.$router.push('/login')
       })
     }
+  },
+  created(){
+    if(!(sessionStorage.getItem("state") && JSON.parse(sessionStorage.getItem("state")))){
+      this.$router.push('/login')
+    }
   }
 }
 </script>

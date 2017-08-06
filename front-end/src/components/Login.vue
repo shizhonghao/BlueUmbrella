@@ -82,6 +82,11 @@ export default {
         })
       }
     }
+  },
+  created(){
+    if(JSON.parse(sessionStorage.getItem("state"))){
+      this.$router.push('/view')
+    }
   }
 }
 </script>

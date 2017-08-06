@@ -87,7 +87,7 @@ export default {
       if(this.username == "" || this.password == ""){
         this.$message.error('请先输入用户名和密码')
         //Will be overridden later
-      } else if(this.username != this.confirm){
+      } else if(this.password != this.confirm){
         this.$message.error('请输入相同的密码')
         //Will be overridden later
       } else {
@@ -113,6 +113,11 @@ export default {
           }
         })
       }
+    }
+  },
+  created(){
+    if(JSON.parse(sessionStorage.getItem("state"))){
+      this.$router.push('/view')
     }
   }
 }
