@@ -6,9 +6,7 @@ from string import Template
 from datetime import datetime
 
 # Here, the current working dictionary must be ~/BlueUmbrella/front-end
-# call(['npm','run','build'])
-# call(['rm', '-r', '/var/www/hexo/source/src'])
-# call(['cp', '-r', 'dist/src', '/var/www/hexo/source/src'])
+call(['npm','run','build'])
 
 #parse the html file and generate index.md
 with open('dist/index.html') as f:
@@ -34,3 +32,10 @@ content = template.substitute(date=now, css=csslink,
                 manifest=scripts[0], vendor=scripts[1], app=scripts[2])
 with open('dist/index.md', 'w') as f:
     f.write(content)
+
+#Here we should cp the rendered file to hexo
+call(['rm', '-r', '/var/www/hexo/source/src'])
+call(['cp', '-r', 'dist/src', '/var/www/hexo/source/src'])
+call(['mv', 'dist/index.md', '/var/www/hexo/source/manage'])
+os.chdir('/var/www/hexo')
+call(['./deploy'])
