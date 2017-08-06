@@ -11,7 +11,7 @@
           <div>
             <el-input
             v-model="username"
-            placeholder="Username"
+            placeholder="用户名"
             required>
             </el-input>
           </div>
@@ -22,7 +22,7 @@
           <div>
             <el-input
             v-model="password"
-            placeholder="Password"
+            placeholder="密码"
             type="password"
             required>
             </el-input>
@@ -34,7 +34,7 @@
           <div>
             <el-input
               v-model="confirm"
-              placeholder="Password confirm"
+              placeholder="密码确认"
               type="password"
               required>
             </el-input>
@@ -46,7 +46,7 @@
           <div>
             <el-input
             v-model="email"
-            placeholder="Email address">
+            placeholder="邮箱地址">
             </el-input>
           </div>
         </el-col>

@@ -46,20 +46,20 @@
       </el-form-item>
 
       <el-form-item label="e-mail">
-        <el-input v-model="form.email"></el-input>
+        <el-input v-model="form.email" placeholder="新邮箱地址"></el-input>
       </el-form-item>
 
       <el-form-item label="ss密码">
-        <el-input v-model="form.ss_password"></el-input>
+        <el-input v-model="form.ss_password" placeholder="新ss密码 建议与登录密码不同"></el-input>
       </el-form-item>
 
       <el-form-item label="密码">
-        <el-input v-model="form.password"></el-input>
+        <el-input v-model="form.password" placeholder="新登录密码 建议与ss密码不同"></el-input>
       </el-form-item>
 
       <el-form-item>
         <el-button type="primary" @click="onSubmit">提交</el-button>
-        <el-button>取消</el-button>
+        <el-button type="primary" @click="$router.push('/view')">取消</el-button>
       </el-form-item>
     </el-form>
 

@@ -11,7 +11,7 @@
           <div>
             <el-input
             v-model="username"
-            placeholder="Username"
+            placeholder="用户名"
             required>
             </el-input>
           </div>
@@ -22,7 +22,7 @@
           <div>
             <el-input
             v-model="password"
-            placeholder="Password"
+            placeholder="密码"
             type="password"
             required>
             </el-input>
