@@ -3,61 +3,82 @@
     <!-- <el-row>
       <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row> -->
-    <el-row>
-      <el-col :span="4" :offset="10">
-        <div>
-          <el-input 
-          v-model="username" 
-          placeholder="Username"
-          required>
-          </el-input>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="4" :offset="10">
-        <div>
-          <el-input 
-          v-model="password" 
-          placeholder="Password"
-          type="password"
-          required>
-          </el-input>
-        </div>
-      </el-col>
-    </el-row>
+    <el-card class="box-card">
       <el-row>
-      <el-col :span="4" :offset="10">
-        <div>
-          <el-input 
-          v-model="email" 
-          placeholder="Email address">
-          </el-input>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="2" :offset="10">
-        <div>
-          <el-button type="primary" @click="register">注册</el-button>
-        </div>
-      </el-col>
-      <el-col :span="2">
-        <div>
-          <el-button type="primary" @click="$router.push('/login')">返回</el-button>
-        </div>
-      </el-col>
-    </el-row>
+      </el-row>
+      <el-row>
+        <el-col :span="12" :offset="6">
+          <div>
+            <el-input
+            v-model="username"
+            placeholder="Username"
+            required>
+            </el-input>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12" :offset="6">
+          <div>
+            <el-input
+            v-model="password"
+            placeholder="Password"
+            type="password"
+            required>
+            </el-input>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12" :offset="6">
+          <div>
+            <el-input
+              v-model="confirm"
+              placeholder="Password confirm"
+              type="password"
+              required>
+            </el-input>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12" :offset="6">
+          <div>
+            <el-input
+            v-model="email"
+            placeholder="Email address">
+            </el-input>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+      </el-row>
+      <el-row>
+        <el-col :span="2" :offset="7">
+          <div>
+            <el-button type="primary" @click="register">注册</el-button>
+          </div>
+        </el-col>
+        <el-col :span="2":offset="4">
+          <div>
+            <el-button type="primary" @click="$router.push('/login')">返回</el-button>
+          </div>
+        </el-col>
+      </el-row>
+    </el-card>
   </div>
 </template>
 
 <script>
+  import ElRow from "element-ui/packages/row/src/row";
 export default {
+  components: {ElRow},
   name: 'register',
   data () {
     return {
       username: '',
       password: '',
+      confirm:'',
       email: ''
     }
   },
@@ -65,6 +86,9 @@ export default {
     register() {
       if(this.username == "" || this.password == ""){
         this.$message.error('请先输入用户名和密码')
+        //Will be overridden later
+      } else if(this.username != this.confirm){
+        this.$message.error('请输入相同的密码')
         //Will be overridden later
       } else {
         this.$ajax.post('/register', {
@@ -116,4 +140,8 @@ export default {
     padding: 10px 0;
     background-color: #f10fafc;
   }
+  .box-card {
+     margin: auto;
+     width: 360px;
+   }
 </style>
