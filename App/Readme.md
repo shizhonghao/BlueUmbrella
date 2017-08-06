@@ -15,7 +15,7 @@
 * `/users`:
     * `GET`: return user information (See below), required admin permission.
 
-* `/uesrs/<string:username>`
+* `/users/<string:username>`
     * `GET`: return specific user information (See below), required admin permission or `current_user.username == username`.
 
     * `PATCH`: receive allowed args (See below), return `Success:true`, required admin permission or `current_user.username == username`.
