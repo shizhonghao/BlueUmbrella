@@ -92,3 +92,19 @@ Basically, we've accomplished the development of the back-end.
 * Apparently the working on Vue is not as smooth as on flask, but at least now the only thing remaining for normal users is editing their account info. We are planning to put the whole system online in few days.
 
 * Tmr I'm gonna fix the bug of error handler, the different view of `View` in Firefox and Chrome, the base64 and QRCode support. At the very last I'm gonna try to merge it into our hexo page.
+
+### Apr 5
+
+* The bug of error handler is caused by the CORS handling of non-200 request. It has been fixed by adding `always` at the end of `add_header`.
+
+* The whole page has been merged into the hexo page, by re-rendering the index.html to index.md. In the very beginning I tried to fix names of js files, then I realized the reason why we need hash in the filename is caching.
+
+* HTTPs support is added by Let's Encrypt!. Thanks EFF.
+
+### Apr 6
+
+* Add a logo on the QRCode.
+
+* Add a password double-checking process in registration.
+
+* Add routing checking when accessing `/logout` and `register` (for the other two I've done it in the beginning")
