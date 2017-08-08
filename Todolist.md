@@ -9,27 +9,27 @@
 
 * **[Working on front-end currently]** Build front-end & back-end base on Vue(js) & Flask(python) 
 
-* Add other protocals to the server since SS might not be available in the future.
+* Add other protocals to the server since SS might not be available in the future. (It's more likely to be a dream currently)
 
 ### Added Jul 11 late nignt
 
-* ~~ Develope interfaces for ShadowsocksR many users, and maybe a front-end for later work. ~~
+* ~~Develope interfaces for ShadowsocksR many users, and maybe a front-end for later work.~~
 
     * ~~ Note: as the version of many users we have used so far is based on mudbjson, the coordination with a **real** database may be concerned as a hidden problem. ~~
 
-* ~~ Start to operate the service ~~
+* ~~Start to operate the service~~
 
 ### Added Jul 13
 
 * Get a 404 and 50x page (Path: /usr/share/nginx/html)
 
-* ~~ Get a favicon ~~
+* ~~Get a favicon~~
 
 ### Added Jun 23
 
-* ~~ Implement the controller ~~
+* ~~Implement the controller~~
 
-* ~~ Start the implementation of front-end ~~
+* ~~Start the implementation of front-end~~
 
 ### Added Aug 4
 
