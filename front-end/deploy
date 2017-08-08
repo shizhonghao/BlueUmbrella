@@ -5,7 +5,10 @@ from subprocess import call
 from string import Template
 from datetime import datetime
 
-# Here, the current working dictionary must be ~/BlueUmbrella/front-end
+#Indicate where hexo is installed
+hexo_dir = "/var/www/hexo"
+
+# Here, the current working dictionary should be BlueUmbrella/front-end
 call(['npm','run','build'])
 
 #parse the html file and generate index.md
@@ -25,20 +28,24 @@ $manifest
 $vendor
 $app
 {% endraw %}''')
+
 now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 csslink = str(s.link)
 scripts = [str(i) for i in s.find_all("script")]
 content = template.substitute(date=now, css=csslink, 
                 manifest=scripts[0], vendor=scripts[1], app=scripts[2])
+
 with open('dist/index.md', 'w') as f:
     f.write(content)
 
-#Here we should cp the rendered file to hexo
-call(['rm', '-r', '/var/www/hexo/source/src'])
-call(['cp', '-r', 'dist/src', '/var/www/hexo/source/src'])
-call(['mv', 'dist/index.md', '/var/www/hexo/source/manage'])
-os.chdir('/var/www/hexo')
+# Move the rendered file into a hexo page named 'manage', and move assets to 'src'
+call(['rm', '-r', os.path.join(hexo_dir, 'source/src')])
+call(['cp', '-r', 'dist/src', os.path.join(hexo_dir, 'source/src')])
+call(['mv', 'dist/index.md', os.path.join(hexo_dir, 'source/manage')])
+os.chdir(hexo_dir)
 call(['sh','deploy'])
+
+# Basically above one has done the following
 # call(['hexo', 'clean'])
 # call(['hexo', 'g'])
 # call(['rm', '-r', 'public/src'])
