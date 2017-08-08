@@ -7,7 +7,7 @@
     * Note: we are not going to completely follow this one, since there's a better way to do tcp congestion control (bbr) which has already been installed.
 
 
-* **[Working on]** Build front-end & back-end base on Vue(js) & Flask(python) 
+* **[Working on front-end currently]** Build front-end & back-end base on Vue(js) & Flask(python) 
 
 * Add other protocals to the server since SS might not be available in the future.
 
@@ -17,19 +17,19 @@
 
     * ~~ Note: as the version of many users we have used so far is based on mudbjson, the coordination with a **real** database may be concerned as a hidden problem. ~~
 
-* Start to operate the service
+* ~~ Start to operate the service ~~
 
 ### Added Jul 13
 
 * Get a 404 and 50x page (Path: /usr/share/nginx/html)
 
-* Get a favicon
+* ~~ Get a favicon ~~
 
 ### Added Jun 23
 
 * ~~ Implement the controller ~~
 
-* Start the implementation of front-end
+* ~~ Start the implementation of front-end ~~
 
 ### Added Aug 4
 
