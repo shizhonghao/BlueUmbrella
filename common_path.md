@@ -1,7 +1,11 @@
-* Mongodb /usr/bin/mongo
+* Mongodb `/usr/bin/mongo`
 
-* shadowsocksr manager /var/www/shadowsocksr/mujson_mgr.py
+* shadowsocksr manager `/var/www/shadowsocksr/mujson_mgr.py`
 
-* hexo /var/www/hexo
+* hexo `/var/www/hexo`
 
-* update & deploy ~/BlueUmbrella/front-end ./deploy
+* Source code of the whole project `/root/BlueUmbrella`
+
+* update & deploy the front-end `/root/BlueUmbrella/front-end` `./deploy`
+
+* update & deploy the hexo `/var/www/hexo` `./deploy`

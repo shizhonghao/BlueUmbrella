@@ -4,17 +4,14 @@ A platform to help our friends to escape some walls.
 
 ## Functions
 
-The platform we are building in should be capable of:
+The whole platform is more likely to be a front-end wrapping the ShadowsocksR manyuser in mudb.json.
 
-1. Sign up / Sign in
+What we are providing is an authentication system corresponding to each individual shadowsocks account, and a RESTful API manipulating those info. (See documentation of APIs).
 
-2. Be able to check one's account info 
+Currently, we are using Vue.js to build the front-end and embedded it into a page of hexo (See `front-end/deploy`).
 
-3. Allow a user to pay for his/her account(10￥/month)
+At the same time, we are using Flask and Mongodb to maintain the back-end and the authentication.
 
-4. Provide VPN services for those users who still has available time in their account.
-
-5. Allow administrator to check the users status, may have to set user's available time manually.
 
 ## Current status
 
