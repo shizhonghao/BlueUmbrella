@@ -1,4 +1,6 @@
 <template>
+  <el-tooltip :disabled="!tooltip" placement="left">
+    <div slot="content">{{ description }} <br v-if="secondLine"/> {{ secondLine }} </div>
     <el-row type="flex" class="row-bg">
         <el-col :span="keyspan" :offset="offset">
             <div class="key">
@@ -12,6 +14,7 @@
             </div>
         </el-col>
     </el-row>
+  </el-tooltip>
 </template>
 
 <script>
@@ -21,6 +24,10 @@ export default {
       keyword : String,
       value: String,
       description: String,
+      secondLine: {
+        type: String,
+        default: ""
+      },
       keyspan: {
         type: Number,
         default: 6
@@ -32,6 +39,10 @@ export default {
       offset: {
         type: Number,
         default: 2
+      },
+      tooltip:{
+        type: Boolean,
+        default: false
       }
     }
 }

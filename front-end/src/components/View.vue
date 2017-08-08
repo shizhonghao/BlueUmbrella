@@ -31,12 +31,17 @@
 
           <infoCol 
           keyword="ss密码: "
-          :value="userinfo.ss_password">
+          :value="userinfo.ss_password"
+          tooltip="true"
+          description="此密码用于填写Shadowsocks密码"
+          secondLine="建议将其修改为与登陆密码不一致">
           </infoCol>
 
           <infoCol
           keyword="可用性: "
-          :value="enable">
+          :value="enable"
+          tooltip="true"
+          description="请联系管理员修改为可用">
           </infoCol>
 
           <infoCol 
