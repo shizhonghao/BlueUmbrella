@@ -1,0 +1,54 @@
+#!/usr/bin/python3
+
+from bs4 import BeautifulSoup as soup
+import os
+from subprocess import call
+from string import Template
+from datetime import datetime
+
+#Indicate where hexo is installed
+hexo_dir = "/var/www/hexo"
+
+# Here, the current working dictionary should be BlueUmbrella/front-end
+call(['npm','run','build'])
+
+#parse the html file and generate index.md
+with open('dist/index.html') as f:
+    s = soup(f.read(),"html.parser")
+
+template = Template(
+'''---
+title: 
+date: $date
+---
+
+{% raw %}
+<div id=app></div>
+$css
+$manifest
+$vendor
+$app
+{% endraw %}''')
+
+now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+csslink = str(s.link)
+scripts = [str(i) for i in s.find_all("script")]
+content = template.substitute(date=now, css=csslink, 
+                manifest=scripts[0], vendor=scripts[1], app=scripts[2])
+
+with open('dist/index.md', 'w') as f:
+    f.write(content)
+
+# Move the rendered file into a hexo page named 'manage', and move assets to 'src'
+call(['rm', '-r', os.path.join(hexo_dir, 'source/src')])
+call(['cp', '-r', 'dist/src', os.path.join(hexo_dir, 'source/src')])
+call(['mv', 'dist/index.md', os.path.join(hexo_dir, 'source/manage')])
+os.chdir(hexo_dir)
+call(['sh','deploy'])
+
+# Basically above one has done the following
+# call(['hexo', 'clean'])
+# call(['hexo', 'g'])
+# call(['rm', '-r', 'public/src'])
+# call(['cp', '-r', 'source/src', 'public/src'])
+# call(['hexo', 'd'])
