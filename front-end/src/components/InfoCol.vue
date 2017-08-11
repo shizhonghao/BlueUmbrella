@@ -1,6 +1,6 @@
 <template>
-  <el-tooltip :disabled="!tooltip" placement="left">
-    <div slot="content">{{ description }} <br v-if="secondLine"/> {{ secondLine }} </div>
+  <el-tooltip :disabled="! tooltip" placement="left">
+    <div slot="content" v-html="description"></div>
     <el-row type="flex" class="row-bg">
         <el-col :span="keyspan" :offset="offset">
             <div class="key">
@@ -76,9 +76,9 @@ export default {
   }
   .el-row {
     margin-bottom: 10px;
-  &:last-child {
+  }
+  .el-row:last-child {
      margin-bottom: 0;
-   }
   }
   .el-col {
     border-radius: 4px;

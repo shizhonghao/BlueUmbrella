@@ -32,15 +32,14 @@
           <infoCol 
           keyword="ss密码: "
           :value="userinfo.ss_password"
-          tooltip="true"
-          description="此密码用于填写Shadowsocks密码"
-          secondLine="建议将其修改为与登陆密码不一致">
+          :tooltip="true"
+          description="此密码用于填写Shadowsocks密码 <br/> 建议将其修改为与登陆密码不一致">
           </infoCol>
 
           <infoCol
           keyword="可用性: "
           :value="enable"
-          tooltip="true"
+          :tooltip="true"
           description="请联系管理员修改为可用">
           </infoCol>
 
@@ -79,7 +78,12 @@
           :value="transfer_remain">
           </infoCol>
 
-          <el-col :span="4" :offset="10">
+          <br/>
+
+          <el-col :span="4" :offset="6">
+            <el-button @click="$router.push('/edit')" type="primary">修改</el-button>
+          </el-col>
+          <el-col :span="4" :offset="4">
             <el-button @click="$router.push('/logout')" type="primary">登出</el-button>
           </el-col>
 
@@ -215,8 +219,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .item{
-  }
+
   .grid-content {
     border-radius: 4px;
     min-height: 36px;
@@ -242,9 +245,9 @@
   }
   .el-row {
     margin-bottom: 10px;
-  &:last-child {
+  }
+  .el-row:last-child {
      margin-bottom: 0;
-   }
   }
   .el-col {
     border-radius: 4px;

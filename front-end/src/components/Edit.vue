@@ -4,10 +4,10 @@
       <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row> -->
 
-    <el-form ref="form" :model="form" label-width="80px">
+    <el-form ref="form" :model="forminfo" label-width="80px">
 
       <el-form-item label="加密">
-        <el-select v-model="form.method" placeholder="请选择加密方式（method）">
+        <el-select v-model="forminfo.method" placeholder="请选择加密方式（method）">
           <el-option label="none" value="none"></el-option>
           <el-option label="aes-128-cfb" value="aes-128-cfb"></el-option>
           <el-option label="aes-192-cfb" value="aes-192-cfb"></el-option>
@@ -24,7 +24,7 @@
       </el-form-item>
 
       <el-form-item label="协议">
-        <el-select v-model="form.protocol" placeholder="请选择协议（protocol）">
+        <el-select v-model="forminfo.protocol" placeholder="请选择协议（protocol）">
           <el-option label="origin" value="origin"></el-option>
           <el-option label="auth_sha1_v4" value="auth_sha1_v4"></el-option>
           <el-option label="auth_sha1_v4_compatible" value="auth_sha1_v4_compatible"></el-option>
@@ -36,7 +36,7 @@
 
 
       <el-form-item label="混淆">
-        <el-select v-model="form.obfs" placeholder="请选择混淆方式（OBFS）">
+        <el-select v-model="forminfo.obfs" placeholder="请选择混淆方式（OBFS）">
           <el-option label="plain" value="plain"></el-option>
           <el-option label="http_simple_compatible" value="http_simple_compatible"></el-option>
           <el-option label="http_simple" value="http_simple"></el-option>
@@ -46,15 +46,15 @@
       </el-form-item>
 
       <el-form-item label="e-mail">
-        <el-input v-model="form.email" placeholder="新邮箱地址"></el-input>
+        <el-input v-model="forminfo.email" placeholder="新邮箱地址"></el-input>
       </el-form-item>
 
       <el-form-item label="ss密码">
-        <el-input v-model="form.ss_password" placeholder="新ss密码 建议与登录密码不同"></el-input>
+        <el-input v-model="forminfo.ss_password" placeholder="新ss密码 建议与登录密码不同"></el-input>
       </el-form-item>
 
       <el-form-item label="密码">
-        <el-input v-model="form.password" placeholder="新登录密码 建议与ss密码不同"></el-input>
+        <el-input v-model="forminfo.password" placeholder="新登录密码 建议与ss密码不同"></el-input>
       </el-form-item>
 
       <el-form-item>
@@ -72,7 +72,15 @@
     name: 'edit',
     data () {
       return {
-        form: {
+        forminfo: {
+          email: '',
+          ss_password:'',
+          password:'',
+          method: '',
+          protocol: '',
+          obfs: '',
+        },
+        userinfo: {
           email: '',
           ss_password:'',
           password:'',
@@ -83,11 +91,35 @@
       }
     },
     methods: {
-      login_req() {
-        return true
-      },
       onSubmit() {
-        console.log('submit!');
+        this.$confirm('此操作将修改您的Shadowsocks配置, 是否继续?', '提示', {
+          confirmButtonText: "提交",
+          cancelButtonText: "取消",
+          type: "warning"
+        })
+        .then(() => {
+          for (var k in this.forminfo){
+            if(this.forminfo[k]=='' || this.forminfo[k]==this.userinfo[k]){
+              delete this.forminfo[k]
+            }
+          }
+          if(Object.keys(this.forminfo).length === 0 && this.forminfo.constructor === Object){
+            this.$message.error('修改后的信息与原来一致!')
+          } else {
+            console.log(this.forminfo)
+            this.$ajax.patch('/users/'.concat(sessionStorage.getItem('username')), this.forminfo)
+            .then((response) => {
+              if(response.data.Success){
+                this.$message.success('提交成功! 请自行设置本地客户端配置')
+                this.$router.push('/view')
+              }
+            })
+            .catch((error) => {
+              console.log(error)
+            })
+          }
+        })
+        .catch(()=>{})
       }
     },
     created(){
@@ -96,7 +128,8 @@
       } else {
         this.$ajax.get('/users/'.concat(sessionStorage.getItem("username")))
         .then((response) => {
-          this.form = response.data
+          this.userinfo = response.data
+          this.forminfo = JSON.parse(JSON.stringify(this.userinfo))
         })
         .catch((error) =>{
           console.log(error)
@@ -117,9 +150,9 @@
   }
   .el-row {
     margin-bottom: 20px;
-    &:last-child {
+  }
+  .el-row:last-child {
       margin-bottom: 0;
-    }
   }
   .el-col {
     border-radius: 4px;
