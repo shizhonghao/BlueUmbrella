@@ -14,7 +14,7 @@
       <el-tabs v-model="activeName" type="border-card" >
         <el-tab-pane label="用户信息" name="first">
 
-          <infoCol 
+          <infoCol
           keyword="用户: "
           :value="current_user">
           </infoCol>
@@ -29,7 +29,7 @@
           :value="userinfo.port.toString()">
           </infoCol>
 
-          <infoCol 
+          <infoCol
           keyword="ss密码: "
           :value="userinfo.ss_password"
           :tooltip="true"
@@ -43,37 +43,37 @@
           description="请联系管理员修改为可用">
           </infoCol>
 
-          <infoCol 
+          <infoCol
           keyword="协议: "
           :value="userinfo.protocol">
           </infoCol>
 
-          <infoCol 
+          <infoCol
           keyword="加密: "
           :value="userinfo.method">
           </infoCol>
 
-          <infoCol 
+          <infoCol
           keyword="混淆: "
           :value="userinfo.obfs">
           </infoCol>
 
-          <infoCol 
+          <infoCol
           keyword="上传流量: "
           :value="upward_transfer">
           </infoCol>
 
-          <infoCol 
+          <infoCol
           keyword="下载流量: "
           :value="downward_transfer">
           </infoCol>
 
-          <infoCol 
+          <infoCol
           keyword="总流量: "
           :value="transfer_enable">
           </infoCol>
 
-          <infoCol 
+          <infoCol
           keyword="剩余流量: "
           :value="transfer_remain">
           </infoCol>

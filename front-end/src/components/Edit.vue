@@ -141,26 +141,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .el-row {
-    margin-bottom: 20px;
-  }
-  .el-row:last-child {
-      margin-bottom: 0;
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
   .el-form{
     border: 1px solid #eaeefb;
     border-radius: 4px;
@@ -169,7 +149,7 @@
     width: 480px;
     margin: auto;
   }
-  .el-option{
-    width: 240px;
+  .el-select{
+    width: 250px;
   }
 </style>
