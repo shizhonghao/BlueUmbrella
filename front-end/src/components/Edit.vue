@@ -59,7 +59,7 @@
 
       <el-form-item>
         <el-button type="primary" @click="onSubmit">提交</el-button>
-        <el-button type="primary" @click="$router.push('/view')">取消</el-button>
+        <el-button @click="$router.push('/view')">取消</el-button>
       </el-form-item>
     </el-form>
 
@@ -144,12 +144,14 @@
   .el-form{
     border: 1px solid #eaeefb;
     border-radius: 4px;
-    transition: all 0.2s ease 0s;
     padding: 24px;
-    width: 480px;
+    width: 360px;
     margin: auto;
   }
   .el-select{
+    width: 250px;
+  }
+  .el-input{
     width: 250px;
   }
 </style>

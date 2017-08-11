@@ -93,6 +93,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .el-row {
+    margin-bottom: 20px;
+  }
+  .el-row:last-child {
+      margin-bottom: 0;
+  }
+  .el-col {
+    border-radius: 4px;
+  }
   .box-card {
     margin: auto;
     width: 360px;

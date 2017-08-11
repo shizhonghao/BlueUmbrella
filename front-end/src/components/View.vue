@@ -219,30 +219,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
-  .bg-purple {
-    background: #d3dce6;
-  }
-  .key{
-    text-align:left;
-    font-size: 1em;
-    font-style: italic;
-    font-weight: 600;
-    margin-top: 0px;
-    padding: 0;
-  }
-  .val{
-    text-align:left;
-    font-size: 1em;
-    /*font-style: italic;*/
-    /*font-weight: 100;*/
-    margin-top: 0px;
-    padding: 0;
-  }
   .el-row {
     margin-bottom: 10px;
   }
@@ -255,10 +231,6 @@
   .row-bg {
     padding: 5px 0;
     background-color: #f9fafc;
-  }
-
-  .text {
-    font-size: 14px;
   }
   .item {
     padding: 18px 0;

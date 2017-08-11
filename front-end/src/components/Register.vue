@@ -125,13 +125,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .grid-content {
-    border-radius: 4px;
-    min-height: 34px;
-  }
-  .bg-purple {
-    background: #d3dce4;
-  }
   .el-row {
     margin-bottom: 20px;
   }
@@ -140,10 +133,6 @@ export default {
   }
   .el-col {
     border-radius: 4px;
-  }
-  .row-bg {
-    padding: 10px 0;
-     background-color: #f9fafc; 
   }
   .box-card {
      margin: auto;
