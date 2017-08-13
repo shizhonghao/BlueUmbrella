@@ -4,19 +4,13 @@
       <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
     </el-row> -->
     <el-card class="box-card">
-      <el-row>
-      </el-row>
       <!-- Navigate Row  -->
       <el-row>
-        <el-col :span="6" :offset="2">
-          <div>
-            当前用户是: {{ current_user }}
-          </div>
+        <el-col :span="12" :offset="2">
+          <div id="content">当前用户是: {{ current_user }}</div>
         </el-col>
-        <el-col :span="6" :offset="8">
-          <div>
-            <el-button @click="logout" type="primary">登出</el-button>
-          </div>
+        <el-col :span="2" :offset="4">
+          <div id="content"><el-button @click="logout" type="primary">登出</el-button></div>
         </el-col>
       </el-row>
     </el-card>
@@ -63,4 +57,8 @@ export default {
     margin: auto;
     width: 50%;
   }
-</style>
+  #content {
+    height: 50px;
+    line-height: 50px;
+  } 
+  </style>
