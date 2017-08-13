@@ -8,14 +8,14 @@
       </el-row>
       <!-- Navigate Row  -->
       <el-row>
-        <el-col :span="6" :offset="4">
+        <el-col :span="6" :offset="2">
           <div>
             当前用户是: {{ current_user }}
           </div>
         </el-col>
-        <el-col :span="6" :offset="6">
+        <el-col :span="6" :offset="8">
           <div>
-            <el-button @click="logout" type="primary">Logout</el-button>
+            <el-button @click="logout" type="primary">登出</el-button>
           </div>
         </el-col>
       </el-row>
