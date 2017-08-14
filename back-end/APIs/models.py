@@ -1,6 +1,6 @@
 from flask_mongoengine import MongoEngine
 from flask_login import UserMixin
-from App import db
+from APIs import db
 import json
 from copy import deepcopy
 import socket

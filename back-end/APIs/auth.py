@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, current_app
 from flask_login import LoginManager, login_user, current_user, logout_user
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from werkzeug.security import check_password_hash, generate_password_hash
-from App.config import SECRET_KEY, EXPIRATION
+from APIs.config import SECRET_KEY, EXPIRATION
 from functools import wraps
 
 
@@ -11,7 +11,7 @@ login_manager = LoginManager()
 
 @login_manager.user_loader
 def user_loader(user_id):
-    from App.models import User
+    from APIs.models import User
     return User.objects(id=user_id).first()
 
 # Customized login method (by token)
@@ -21,7 +21,7 @@ def request_loader(request):
     if not token:
         token = request.args.get('Token')    
     if token:
-        from App.models import User
+        from APIs.models import User
         s = Serializer(SECRET_KEY, expires_in=EXPIRATION)
         user=s.loads(token).get('username')
         return User.objects(username=user).first()
@@ -31,7 +31,7 @@ def request_loader(request):
 @auth.route("/login", methods=["GET","POST"])
 def login():
     if request.method == "POST":
-        from App.models import User
+        from APIs.models import User
         req = request.get_json()
         if not req:
             raise APIException("Bad Request", "Request should be json", 400)
@@ -61,7 +61,7 @@ def register():
     if request.method == "POST":
         if current_user.is_authenticated:
             raise APIException("Wrong Status", "You have already logged in!", 500)
-        from App.models import User, SSUsers
+        from APIs.models import User, SSUsers
         req = request.get_json()
         if not req:
             raise APIException("Bad Request", "Request should be json", 400)

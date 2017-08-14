@@ -1,6 +1,6 @@
-from App import app
+from APIs import app
 from flask_restful import Api
-from App.controller import Users, Serverinfo, SpecUser
+from APIs.controller import Users, Serverinfo, SpecUser
 
 api = Api(app, default_mediatype="application/json")
 api.add_resource(Users, '/users', endpoint='users')

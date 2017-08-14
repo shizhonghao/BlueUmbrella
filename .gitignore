@@ -3,3 +3,5 @@ __pycache__/
 App/__pycache__/
 *$py.class
 front-end/node_modules/
+back-end/__pycache__/
+back-end/App/__pycache__/

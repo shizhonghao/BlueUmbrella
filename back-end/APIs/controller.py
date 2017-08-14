@@ -2,8 +2,8 @@ from flask import jsonify, make_response, abort, request, g, url_for, current_ap
 from flask_restful import Resource, fields, marshal_with, reqparse
 from flask_login import current_user, login_required
 from werkzeug.security import generate_password_hash
-from App.auth import admin_required
-from App.models import User, SSUsers
+from APIs.auth import admin_required
+from APIs.models import User, SSUsers
 
 import os
 import re

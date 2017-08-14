@@ -1,8 +1,8 @@
 from flask import Flask
 from flask_mongoengine import MongoEngine
-from App import config
-from App.auth import auth
-from App.auth import login_manager
+from APIs import config
+from APIs.auth import auth
+from APIs.auth import login_manager
 
 
 app = Flask(__name__)
@@ -12,5 +12,5 @@ app.register_blueprint(auth)
 db = MongoEngine(app)
 login_manager.init_app(app)
 
-from App.models import User
-from App.routes import api
+from APIs.models import User
+from APIs.routes import api
