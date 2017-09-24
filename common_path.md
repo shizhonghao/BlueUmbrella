@@ -9,3 +9,7 @@
 * update & deploy the front-end `/root/BlueUmbrella/front-end` `./deploy`
 
 * update & deploy the hexo `/var/www/hexo` `./deploy`
+
+* postfix `/etc/postfix/main.cf`
+
+* dovecot `/etc/dovecot`
