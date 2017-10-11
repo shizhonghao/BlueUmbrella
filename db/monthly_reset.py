@@ -1,3 +1,5 @@
+# Edit /etc/crontab to set time interval of resetting data.
+
 import json
 
 with open("/var/www/shadowsocksr/mudb.json","r") as f:
