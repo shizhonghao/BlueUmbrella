@@ -6,7 +6,7 @@ import datetime
 
 # backup database before reset
 t = datetime.date.today()
-copy_path = "/var/www/shadowsocksr/mudb-backup-" + str(t) + ".json"
+copy_path = "/root/BlueUmbrella/db/backup/mudb-backup-" + str(t) + ".json"
 os.system("cp /var/www/shadowsocksr/mudb.json " + copy_path)
 
 # reset dataflow to 0
@@ -19,3 +19,4 @@ for index, line in enumerate(json_data):
 with open("/var/www/shadowsocksr/mudb.json","w") as f:
     json.dump(json_data,f,sort_keys = True,indent = 4)
     print("data reseted")
+
