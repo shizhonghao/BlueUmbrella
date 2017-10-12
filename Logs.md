@@ -108,3 +108,11 @@ Basically, we've accomplished the development of the back-end.
 * Add a password double-checking process in registration.
 
 * Add routing checking when accessing `/logout` and `register` (for the other two I've done it in the beginning")
+
+### Oct 11
+
+* Add monthly reset plan. Altered `/etc/crontab` to run `/root/BlueUmbrella/db/monthly_reset.py` on the 1st of each month.
+
+### Oct 12
+
+* Add backup plan before the dataflow reset.
