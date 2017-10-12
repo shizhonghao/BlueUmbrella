@@ -115,4 +115,4 @@ Basically, we've accomplished the development of the back-end.
 
 ### Oct 12
 
-* Add backup plan before the dataflow reset.
+* Add backup plan before the dataflow reset. Currently under `/root/BlueUmbrella/db/backup`
