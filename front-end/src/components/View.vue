@@ -15,6 +15,20 @@
         <el-tab-pane label="用户信息" name="first">
 
           <infoCol
+            keyword="服务器IP: "
+            value="172.104.106.82"
+            :tooltip="true"
+            description="这里填tbufoundation.tk也是可以的">
+          </infoCol>
+
+          <infoCol
+            keyword="ipv6地址: "
+            value="2400:8902::f03c:91ff:fe7b:254d"
+            :tooltip="true"
+            description="如果你的网络可以接入ipv6的话，填这个或许可以解决一些玄学问题">
+          </infoCol>
+
+          <infoCol
           keyword="用户: "
           :value="current_user">
           </infoCol>
