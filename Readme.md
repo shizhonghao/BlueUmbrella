@@ -19,4 +19,4 @@ Here's a [Todo list](https://github.com/raycursive/BlueUmbrella/blob/master/Todo
 
 Here's our [working logs](https://github.com/raycursive/BlueUmbrella/blob/master/Logs.md), updating by our progress.
 
-Here's the [documentation](https://github.com/raycursive/BlueUmbrella/blob/master/App/Readme.md) of the API.
+Here's the [documentation](https://github.com/raycursive/BlueUmbrella/blob/master/back-end/APIs/Readme.md) of the API.
