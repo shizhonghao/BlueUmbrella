@@ -13,3 +13,5 @@
 * postfix `/etc/postfix/main.cf`
 
 * dovecot `/etc/dovecot`
+
+* vspftpd `/etc/vsftpd.conf` for settings; `/etc/vsftpd.userlist` for allowed users 
