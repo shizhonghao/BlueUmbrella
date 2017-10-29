@@ -117,6 +117,8 @@ Basically, we've accomplished the development of the back-end.
 
 * Add backup plan before the dataflow reset. Currently under `/root/BlueUmbrella/db/backup`
 
-## Oct 29 
+### Oct 29 
 
 * Set up a safe ftp server following: `https://www.digitalocean.com/community/tutorials/how-to-set-up-vsftpd-for-a-user-s-directory-on-ubuntu-16-04` 
+However a 425 error still occurs when using commands such as `ls`, which I would like to ignore since we can use `Filezila` instead of the build-in ftp program.
+The problem seems to be a result of POST/PASV mode of ftp which some say POST is the default settings for cmd while the server uses the PASV mod.
