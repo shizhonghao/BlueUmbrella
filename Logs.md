@@ -116,3 +116,7 @@ Basically, we've accomplished the development of the back-end.
 ### Oct 12
 
 * Add backup plan before the dataflow reset. Currently under `/root/BlueUmbrella/db/backup`
+
+## Oct 29 
+
+* Set up a safe ftp server following: `https://www.digitalocean.com/community/tutorials/how-to-set-up-vsftpd-for-a-user-s-directory-on-ubuntu-16-04` 
