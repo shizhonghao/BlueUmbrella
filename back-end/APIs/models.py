@@ -12,6 +12,7 @@ class User(db.Document, UserMixin):
     email = db.StringField(max_length=255)
     is_active = db.BooleanField(default=True)
     is_admin = db.BooleanField(default=False)
+    days_remaining = db.IntField()
 
 
 #mudb.json functions

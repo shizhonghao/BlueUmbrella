@@ -15,7 +15,8 @@ class Users(Resource):
 	def get(self):
 		all_users = SSUsers().get_all()
 		for user in all_users:
-			all_users[user]['email']=User.objects(username=user).first().email
+			all_users[user]['email'] = User.objects(username=user).first().email
+			all_users[user]['days_remaining'] = User.objects(username=user).first().days_remaining
 		return all_users
 
 	@login_required
@@ -36,6 +37,7 @@ class SpecUser(Resource):
 			#Need an error handler later
 			return {"Status":"Error, no such user"}, 500
 		current_info['email'] = User.objects(username=username).first().email
+		current_info['days_remaining'] = User.objects(username=username).first().days_remaining
 		return current_info
 
 	@login_required
