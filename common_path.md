@@ -15,3 +15,5 @@
 * dovecot `/etc/dovecot`
 
 * vspftpd `/etc/vsftpd.conf` for settings; `/etc/vsftpd.userlist` for allowed users 
+
+* crontab `/etc/crontab` to set time interval of resetting data.
