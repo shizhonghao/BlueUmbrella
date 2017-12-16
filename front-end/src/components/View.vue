@@ -58,6 +58,13 @@
           </infoCol>
 
           <infoCol
+            keyword="剩余可用天数: "
+            :value="userinfo.days_remaining"
+            :tooltip="true"
+            description="请联系管理员添加可用天数">
+          </infoCol>
+
+          <infoCol
           keyword="协议: "
           :value="userinfo.protocol">
           </infoCol>
@@ -167,7 +174,8 @@
           enable: "",
           upward_transfer: 0,
           downward_transfer: 0,
-          transfer_enable: 0
+          transfer_enable: 0,
+          days_remaining: 0
         },
         keytable: {
           test: "Test"
