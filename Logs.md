@@ -124,3 +124,11 @@ Basically, we've accomplished the development of the back-end.
 * However a 425 error still occurs when using commands such as `ls`, which I would like to ignore since we can use `Filezila` instead of the build-in ftp program.
 
 * The problem seems to be a result of POST/PASV mode of ftp which some say POST is the default settings for cmd while the server uses the PASV mod.
+
+### Dec 10
+
+* Add `days_remaining` key to database(mongodb), the numbers of available days of a user.
+
+* Add daily reset plan, minus `days_remaining` by 1 and disable accounts who used up their available dates.
+
+* Built tool for add available days to account. `add_days_to_account`
