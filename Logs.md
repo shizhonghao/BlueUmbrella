@@ -7,9 +7,9 @@
 
 ### Jul 11
 
-* Installed LEMP Stack ([link](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-in-ubuntu-16-04))
+* Installed LEMP Stack ([~~link~~](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-in-ubuntu-16-04))（Now on Ubuntu18.04[link](https://linoxide.com/webserver/install-lemp-ubuntu/)）
 
-* Installed ShadowsocksR ([~~link~~](https://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup(manyuser-with-mysql))) ([update-link](https://github.com/Ssrbackup/shadowsocks-rss/wiki/Server-Setup(manyuser-with-mysql))) **Succeed with mudbjson**
+* Installed ShadowsocksR ([~~link~~](https://github.com/breakwa11/shadowsocks-rss/wiki/Server-Setup(manyuser-with-mysql))) ([update-link](https://github.com/SSRbackup/shadowsocks-rss/wiki/Server-Setup(manyuser-with-mudbjson))) **Succeed with mudbjson**
 
 ### Jul 12
 
