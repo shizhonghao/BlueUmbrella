@@ -26,7 +26,7 @@ for user in user_dat:
             disable_user(user["username"])
             collection.update({"username":user["username"]}, {"$set":{"days_remaining":0}})
         elif days_rem > 1:
-            collection.update({"username":user["username"]}, {"$set":{"days_remaining":user[days_remaining]-1}})
+            collection.update({"username":user["username"]}, {"$set":{"days_remaining":user["days_remaining"]-1}})
         else:
             pass
 
