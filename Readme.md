@@ -1,29 +1,22 @@
-#Readme
+# Readme
 
 A platform to help our friends to escape some walls.
 
 ## Functions
 
-The platform we are building in should be capable of:
+The whole platform is more likely to be a front-end wrapping the ShadowsocksR manyuser in mudb.json.
 
-1. Letting a user sign in/up.
+What we are providing is an authentication system corresponding to each individual shadowsocks account, and a RESTful API manipulating those info. (See documentation of APIs).
 
-2. Allowing a user to check his/her current account status(dataflow, connection time, available time etc). 
+Currently, we are using Vue.js to build the front-end and embedded it into a page of hexo (See `front-end/deploy`).
 
-3. Allowing a user to pay for his/her account(10￥/month)
+At the same time, we are using Flask and Mongodb to maintain the back-end and the authentication.
 
-4. Providing VPN services for those users who still has available time in their account.
 
-5. Allowing administrator to check the users status, may have to set user's available time manually.
+## Current status
 
-## database design
+Here's a [Todo list](https://github.com/raycursive/BlueUmbrella/blob/master/Todolist.md).
 
-relational schema:
+Here's our [working logs](https://github.com/raycursive/BlueUmbrella/blob/master/Logs.md), updating by our progress.
 
-user(id,pwd)
-
-account(id,expire_date)
-
-stat(id,dataflow,connection_time)
-
-with primary key id(username)
+Here's the [documentation](https://github.com/raycursive/BlueUmbrella/blob/master/back-end/APIs/Readme.md) of the API.
